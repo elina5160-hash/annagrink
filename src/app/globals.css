@@ -5,11 +5,14 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* removed @theme inline for broader CSS compatibility */
+
+@font-face {
+  font-family: "Libertinus Math";
+  src: url("/fonts/LibertinusMath-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +25,28 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, Helvetica, sans-serif;
+}
+
+.font-libertinus {
+  font-family: "Libertinus Math", Georgia, serif;
+  font-feature-settings: "kern" 1, "liga" 1, "tnum" 0;
+}
+
+.gold-button {
+  background-color: #CA9A3C;
+  background-image: url('/assets/gold-button.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 9999px;
+  box-shadow: 0 10px 0 rgba(0,0,0,0.12);
+}
+
+.app-stars {
+  background-image: url('/фон.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
