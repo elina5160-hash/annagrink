@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { BottomBar } from "@/components/ui/bottom-bar";
 import Image from "next/image";
+import Link from "next/link";
 
  
 
@@ -15,8 +16,77 @@ export default function BackgroundWithBar(props: { title?: string }) {
 }
 
 export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string }) {
-  const words = title.split(" ");
+  const words = title.split(" ")
   const isHome = title === "ДОМОЙ";
+  const isSupport = title === "ПОДДЕРЖКА";
+  if (isSupport) {
+    return (
+      <div
+        className="relative min-h-screen w-full flex items-center justify-center app-stars pt-0 pb-[110px] md:pb-[80px] lg:pb-[65px]"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 90px)" }}
+      >
+        <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: 0 }}>
+            <svg width="343" height="114" viewBox="0 0 343 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="support_grad_only" x1="171.5" y1="0" x2="171.5" y2="114" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#08102D" />
+                  <stop offset="1" stopColor="#1A285B" />
+                </linearGradient>
+              </defs>
+              <rect width="343" height="114" rx="20" fill="url(#support_grad_only)" />
+            </svg>
+            <a
+              href="https://t.me/Levi_Antonina"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute z-20"
+              style={{
+                left: 0,
+                top: 0,
+                width: "343px",
+                height: "114px",
+                display: "block",
+                padding: "16px",
+                transition: "transform 150ms ease",
+              }}
+              onMouseDown={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(0.98)"
+              }}
+              onMouseUp={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+              }}
+            >
+              <div className="flex items-center justify-between w-full h-full">
+                <div
+                  className="font-libertinus"
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Поддержка
+                </div>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="18" cy="18" r="16" stroke="#CB9B3D" strokeWidth="2" />
+                  <path d="M12 18l4 4 8-8" stroke="#CB9B3D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </a>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div
       className="relative min-h-screen w-full flex items-start justify-center app-stars pt-5 pb-[110px] md:pb-[80px] lg:pb-[65px]"
@@ -33,18 +103,35 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
             </defs>
             <rect width="342.93" height="127.969" rx="20" fill="url(#diz2_grad)" />
           </svg>
-          <img
-            src="/woman.svg"
-            alt="woman"
+          <Link
+            href="/admin"
             className="absolute z-10"
             style={{
               left: "22.9453px",
               top: "7.63574px",
               width: "110.389px",
               height: "120.333px",
+              display: "block",
               borderRadius: "6px",
+              overflow: "hidden",
+              transition: "transform 150ms ease",
             }}
-          />
+            onMouseDown={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(0.98)"
+            }}
+            onMouseUp={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+            }}
+          >
+            <img
+              src="/woman.svg"
+              alt="woman"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </Link>
           <img
             src="/ikonkatx.svg"
             alt="ikonkatx"
@@ -84,22 +171,22 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
           />
         )}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: isHome ? "18px" : undefined }}>
-          <svg width="343" height="418" viewBox="0 0 343 418" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <svg width="343" height={isHome ? 270 : 414} viewBox={`0 0 343 ${isHome ? 270 : 414}`} fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
             <defs>
               <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#08102d" />
                 <stop offset="100%" stopColor="#1a285b" />
               </linearGradient>
             </defs>
-            <rect y="0" width="162" height="114" rx="20" fill="url(#grad)" />
-            <rect x="181" y="0" width="162" height="114" rx="20" fill="url(#grad)" />
-            <rect y="132" width="162" height="114" rx="20" fill="url(#grad)" />
+            <rect y={0} width={162} height={126} rx={20} fill="url(#grad)" />
+            <rect x={181} y={0} width={162} height={126} rx={20} fill="url(#grad)" />
+            <rect y={144} width={162} height={126} rx={20} fill="url(#grad)" />
             {!isHome && (
-              <rect y="264" width="162" height="114" rx="20" fill="url(#grad)" />
+              <rect y={288} width={162} height={126} rx={20} fill="url(#grad)" />
             )}
-            <rect x="181" y="132" width="162" height="114" rx="20" fill="url(#grad)" />
+            <rect x={181} y={144} width={162} height={126} rx={20} fill="url(#grad)" />
             {!isHome && (
-              <rect x="181" y="264" width="162" height="114" rx="20" fill="url(#grad)" />
+              <rect x={181} y={288} width={162} height={126} rx={20} fill="url(#grad)" />
             )}
           </svg>
           {isHome && (
@@ -110,7 +197,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   left: 0,
                   top: 0,
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
                 <img
@@ -139,7 +226,10 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "center",
                     gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
                   }}
                 >
                   <span
@@ -155,15 +245,31 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
               </div>
-              <div
+              <Link
+                href="/podcasts"
                 className="absolute z-20"
                 style={{
                   left: "181px",
                   top: 0,
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
+                  display: "block",
                 }}
               >
+                <img
+                  src="/mikro.svg"
+                  alt="mikro"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                  }}
+                />
                 <div
                   className="font-libertinus"
                   style={{
@@ -176,7 +282,10 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "center",
                     gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
                   }}
                 >
                   <span
@@ -191,16 +300,30 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   </span>
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
-              </div>
+              </Link>
               <div
                 className="absolute z-20"
                 style={{
                   left: 0,
-                  top: "132px",
+                  top: "144px",
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
+                <img
+                  src="/kalendar.svg"
+                  alt="kalendar"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                  }}
+                />
                 <div
                   className="font-libertinus"
                   style={{
@@ -213,7 +336,10 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "center",
                     gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
                   }}
                 >
                   <span
@@ -233,11 +359,25 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 className="absolute z-20"
                 style={{
                   left: "181px",
-                  top: "132px",
+                  top: "144px",
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
+                <img
+                  src="/monet.svg"
+                  alt="monet"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                  }}
+                />
                 <div
                   className="font-libertinus"
                   style={{
@@ -250,7 +390,10 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "center",
                     gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
                   }}
                 >
                   <span
@@ -276,7 +419,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   left: 0,
                   top: 0,
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
                 <div
@@ -324,7 +467,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   left: "181px",
                   top: 0,
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
                 <div
@@ -370,9 +513,9 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 className="absolute z-20"
                 style={{
                   left: 0,
-                  top: "132px",
+                  top: "144px",
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
                 <div
@@ -416,9 +559,9 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 className="absolute z-20"
                 style={{
                   left: "181px",
-                  top: "132px",
+                  top: "144px",
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
                 <div
@@ -462,11 +605,12 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 className="absolute z-20"
                 style={{
                   left: 0,
-                  top: "264px",
+                  top: "288px",
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
+                
                 <div
                   className="font-libertinus"
                   style={{
@@ -508,11 +652,12 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 className="absolute z-20"
                 style={{
                   left: "181px",
-                  top: "264px",
+                  top: "288px",
                   width: "162px",
-                  height: "114px",
+                  height: "126px",
                 }}
               >
+                
                 <div
                   className="font-libertinus"
                   style={{
@@ -553,6 +698,106 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
             </>
           )}
         </motion.div>
+        {isHome && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "18px" }}>
+            <svg width="342" height="264" viewBox="0 0 342 264" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="dyn_grad" x1="171" y1="264" x2="171" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#08102d" />
+                  <stop offset="100%" stopColor="#1a285b" />
+                </linearGradient>
+              </defs>
+              <rect width="342" height="264" rx="20" fill="url(#dyn_grad)" />
+            </svg>
+            <div
+              className="absolute z-20"
+              style={{
+                left: 0,
+                top: 0,
+                width: "342px",
+                height: "264px",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  left: "18px",
+                  top: "18px",
+                  fontFamily: "var(--second-family)",
+                  fontWeight: 400,
+                  fontSize: "17px",
+                  lineHeight: "95%",
+                  textTransform: "uppercase",
+                  background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Личная динамика
+              </div>
+            </div>
+          </motion.div>
+        )}
+        {isSupport && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "18px" }}>
+            <svg width="343" height="114" viewBox="0 0 343 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="support_grad" x1="171.5" y1="0" x2="171.5" y2="114" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#08102D" />
+                  <stop offset="1" stopColor="#1A285B" />
+                </linearGradient>
+              </defs>
+              <rect width="343" height="114" rx="20" fill="url(#support_grad)" />
+            </svg>
+            <a
+              href="https://t.me/Levi_Antonina"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute z-20"
+              style={{
+                left: 0,
+                top: 0,
+                width: "343px",
+                height: "114px",
+                display: "block",
+                padding: "16px",
+                transition: "transform 150ms ease",
+              }}
+              onMouseDown={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(0.98)"
+              }}
+              onMouseUp={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+              }}
+            >
+              <div className="flex items-center justify-between w-full h-full">
+                <div
+                  className="font-libertinus"
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Поддержка
+                </div>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="18" cy="18" r="16" stroke="#CB9B3D" strokeWidth="2" />
+                  <path d="M12 18l4 4 8-8" stroke="#CB9B3D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </a>
+          </motion.div>
+        )}
       </div>
     </div>
   );
