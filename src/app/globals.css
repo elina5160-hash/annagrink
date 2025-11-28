@@ -7,13 +7,7 @@
 
 /* removed @theme inline for broader CSS compatibility */
 
-@font-face {
-  font-family: "Libertinus Math";
-  src: url("/fonts/LibertinusMath-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+/* font-face removed to prevent fetching missing /fonts/LibertinusMath-Regular.woff2 */
 
 @media (prefers-color-scheme: dark) {
   :root {
