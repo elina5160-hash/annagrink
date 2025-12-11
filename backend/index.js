@@ -1,4 +1,5 @@
-require('dotenv').config()
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, 'bot') })
 const { Telegraf, Markup } = require('telegraf')
 
 const token = process.env.BOT_TOKEN
@@ -13,20 +14,18 @@ const bot = new Telegraf(token)
 
 bot.start((ctx) => {
   return ctx.reply(
-    'Добро пожаловать! Откройте веб‑приложение по кнопке ниже.',
+    'Добро пожаловать в Институт астрологии и психологии. Откройте приложение по кнопке ниже',
     Markup.inlineKeyboard([
       Markup.button.webApp('Открыть в Telegram', webappUrl),
-      Markup.button.url('Открыть в браузере', webappUrl),
     ])
   )
 })
 
 bot.command('webapp', (ctx) => {
   return ctx.reply(
-    'Откройте веб‑приложение по кнопке ниже.',
+    'Добро пожаловать в Институт астрологии и психологии. Откройте приложение по кнопке ниже',
     Markup.inlineKeyboard([
       Markup.button.webApp('Открыть в Telegram', webappUrl),
-      Markup.button.url('Открыть в браузере', webappUrl),
     ])
   )
 })

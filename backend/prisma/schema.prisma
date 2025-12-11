@@ -1,0 +1,78 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  telegramId   String     @unique
+  displayName  String?
+  createdAt    DateTime   @default(now())
+  subscriptions Subscription[]
+  views        View[]
+  payments     Payment[]
+  admin        Admin?
+}
+
+model Subscription {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  status    String   // active | inactive
+  startAt   DateTime
+  endAt     DateTime
+}
+
+model Podcast {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  title     String
+  url       String?
+  createdAt DateTime @default(now())
+}
+
+model AstroArticle {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  title     String
+  url       String?
+  createdAt DateTime @default(now())
+}
+
+model View {
+  id          Int      @id @default(autoincrement())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  contentType String   // podcast | astro
+  contentSlug String
+  lastViewedAt DateTime @default(now())
+  count       Int       @default(0)
+}
+
+model Payment {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  provider   String
+  amount     Int
+  currency   String
+  status     String
+  externalId String
+  createdAt  DateTime @default(now())
+}
+
+model Admin {
+  id     Int   @id @default(autoincrement())
+  user   User  @relation(fields: [userId], references: [id])
+  userId Int   @unique
+  role   String // super | editor
+}
+
+model AdminCred {
+  id        Int      @id @default(autoincrement())
+  passHash  String
+  createdAt DateTime @default(now())
+}
