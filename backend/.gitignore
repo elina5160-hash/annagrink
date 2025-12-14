@@ -1,4 +1,8 @@
 .env
+<<<<<<< Updated upstream
 node_modules/
 generated/
 prisma/dev.db
+=======
+node_modules/
+>>>>>>> Stashed changes
