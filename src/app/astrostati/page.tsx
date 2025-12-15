@@ -178,7 +178,7 @@ export default function AstrostatyiPage() {
           <img
             src="/woman.png"
             alt="woman"
-            style={{ width: "110px", height: "120px", objectFit: "cover", alignSelf: "flex-end" }}
+            style={{ width: "110px", height: "138px", objectFit: "cover", alignSelf: "flex-end" }}
           />
           <img
             src="/Group 454.png"
