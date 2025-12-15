@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { BottomBar } from "@/components/ui/bottom-bar";
+import { BottomBar } from "./bottom-bar";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";

@@ -1,5 +1,5 @@
 "use client"
-import { BottomBar } from "@/components/ui/bottom-bar"
+import { BottomBar } from "../../components/ui/bottom-bar"
 import { Suspense, useEffect, useMemo, useState } from "react"
 export const dynamic = "force-dynamic"
 import { useSearchParams } from "next/navigation"
