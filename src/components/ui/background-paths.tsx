@@ -531,7 +531,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
             }}
           />
         )}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: isHome ? "18px" : undefined }}>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: isHome ? "18px" : "15px" }}>
           <svg width="343" height={isHome ? 270 : 414} viewBox={`0 0 343 ${isHome ? 270 : 414}`} fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
             <defs>
               <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
@@ -722,10 +722,8 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
               </a>
-              <a
-                href="https://t.me/+Fm-0h0ZFMxYwNGJi"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/club"
                 className="absolute z-20"
                 style={{
                   left: "181px",
@@ -775,11 +773,11 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    чат
+                    о клубе
                   </span>
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
-              </a>
+              </Link>
             </>
           )}
           {!isHome && (
