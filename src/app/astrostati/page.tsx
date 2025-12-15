@@ -176,12 +176,12 @@ export default function AstrostatyiPage() {
           }}
         >
           <img
-            src="/woman.svg"
+            src="/woman.png"
             alt="woman"
             style={{ width: "110px", height: "120px", objectFit: "cover", alignSelf: "flex-end" }}
           />
           <img
-            src="/Group 454.svg"
+            src="/Group 454.png"
             alt="decor"
             style={{ width: "172px", height: "34px", objectFit: "contain" }}
           />
