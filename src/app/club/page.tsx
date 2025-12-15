@@ -18,10 +18,7 @@ export default function ClubPage() {
         <div className="relative max-w-[343px] mx-auto mb-0">
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", width: "342px", height: "127px", borderRadius: "20px", background: "linear-gradient(180deg, #08102D 0%, #1A285B 100%)" }}>
             <img src="/woman.svg" alt="woman" style={{ width: "110px", height: "120px", objectFit: "cover", alignSelf: "flex-end" }} />
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "flex-start" }}>
-              <img src="/Group 454.svg" alt="Institute" style={{ width: "172px", height: "34px", objectFit: "contain" }} />
-              <img src="/спецпредл.svg" alt="Special Offer" style={{ width: "164px", height: "41px", objectFit: "contain" }} />
-            </div>
+            <img src="/Group 454.svg" alt="decor" style={{ width: "172px", height: "34px", objectFit: "contain" }} />
           </div>
         </div>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "18px" }}>
