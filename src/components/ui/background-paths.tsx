@@ -484,14 +484,14 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
             }}
           >
             <img
-              src="/woman.svg"
+              src="/woman.png"
               alt="woman"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
             />
           </Link>
           {hiddenBanners.includes("ikonkatx") ? null : (
             <img
-              src="/ikonkatx.svg"
+              src="/ikonkatx_hq.png"
               alt="ikonkatx"
               className="absolute z-10"
               style={{
