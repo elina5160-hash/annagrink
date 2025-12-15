@@ -176,7 +176,7 @@ export default function AstrostatyiPage() {
           }}
         >
           <img
-            src="/woman.svg"
+            src="/woman.png"
             alt="woman"
             style={{ width: "110px", height: "120px", objectFit: "cover", alignSelf: "flex-end" }}
           />

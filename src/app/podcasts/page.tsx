@@ -208,7 +208,7 @@ export default function PodcastsPage() {
       </nav>
       <div className="relative max-w-[343px] mx-auto mb-0">
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", width: "342px", height: "127px", borderRadius: "20px", background: "linear-gradient(180deg, #08102D 0%, #1A285B 100%)" }}>
-          <img src="/woman.svg" alt="woman" style={{ width: "110px", height: "120px", objectFit: "cover", alignSelf: "flex-end" }} />
+          <img src="/woman.png" alt="woman" style={{ width: "110px", height: "120px", objectFit: "cover", alignSelf: "flex-end" }} />
           <img src="/Group 454.svg" alt="decor" style={{ width: "172px", height: "34px", objectFit: "contain" }} />
         </div>
       </div>
