@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 # Root ignore for the whole project
 
 # Dependencies
@@ -10,17 +9,10 @@
 **/build/
 
 # Logs
-=======
-**/node_modules/
-**/.next/
-**/out/
-**/build/
->>>>>>> Stashed changes
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-<<<<<<< Updated upstream
 
 # OS
 .DS_Store
@@ -34,11 +26,4 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
-=======
-.DS_Store
-.env*
-*.pem
-.vercel/
-*.tsbuildinfo
 next-env.d.ts
->>>>>>> Stashed changes

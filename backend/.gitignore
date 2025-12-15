@@ -1,8 +1,6 @@
 .env
-<<<<<<< Updated upstream
 node_modules/
 generated/
 prisma/dev.db
-=======
-node_modules/
->>>>>>> Stashed changes
+# Telegram bot env file (keep local only)
+bot

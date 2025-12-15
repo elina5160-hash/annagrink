@@ -1,9 +1,18 @@
 "use client"
 import { BottomBar } from "@/components/ui/bottom-bar"
-import { useEffect, useMemo, useState } from "react"
+import { Suspense, useEffect, useMemo, useState } from "react"
+export const dynamic = "force-dynamic"
 import { useSearchParams } from "next/navigation"
 
 export default function SubscriptionPage() {
+  return (
+    <Suspense fallback={<div />}>
+      <SubscriptionContent />
+    </Suspense>
+  )
+}
+
+function SubscriptionContent() {
   const params = useSearchParams()
   const [uid, setUid] = useState<string | null>(null)
   const [daysLeft, setDaysLeft] = useState<number | null>(null)

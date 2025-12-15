@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { getSupabaseServer } from "@/lib/supabase"
+import { getSupabaseServer } from "../../../../lib/supabase"
 
 function nowMoscow() {
   const s = new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" })
@@ -37,4 +37,3 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: String(e?.message || e) }, { status: 500 })
   }
 }
-
