@@ -13,7 +13,7 @@
     "@supabase/supabase-js": "^2.87.1",
     "class-variance-authority": "^0.7.1",
     "framer-motion": "^12.23.24",
-    "next": "16.0.3",
+    "next": "^16.0.10",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
@@ -23,7 +23,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.0.3",
+    "eslint-config-next": "^16.0.10",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
