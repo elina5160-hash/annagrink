@@ -181,7 +181,7 @@ export default function AstrostatyiPage() {
             style={{ width: "110px", height: "120px", objectFit: "cover", objectPosition: "top", alignSelf: "flex-end" }}
           />
           <img
-            src="/Group 454.png"
+            src="/Group 454_hq.png"
             alt="decor"
             style={{ width: "172px", height: "34px", objectFit: "contain" }}
           />
