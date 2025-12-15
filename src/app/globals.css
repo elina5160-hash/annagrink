@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, Helvetica, sans-serif;
+}
+
+.font-libertinus {
+  font-family: "Libertinus Math", Georgia, serif;
+  font-feature-settings: "kern" 1, "liga" 1, "tnum" 0;
+}
+
+.gold-button {
+  background-color: #CA9A3C;
+  background-image: url('/assets/gold-button.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 9999px;
+  box-shadow: 0 10px 0 rgba(0,0,0,0.12);
+}
+
+.app-stars {
+  background-image:
+    radial-gradient(ellipse at top left, rgba(25,38,86,0.85), rgba(8,16,46,0.9)),
+    url('/фон.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
