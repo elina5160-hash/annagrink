@@ -259,7 +259,7 @@ export default function PodcastsPage() {
           </div>
         </div>
       </div>
-      <div className="w-full max-w-[343px] mt-4 mb-24">
+      <div className="w-full max-w-[343px] mt-4">
         <ul className="space-y-2">
           {listTopics.map((t) => (
             <li key={t}>
@@ -403,7 +403,7 @@ export default function PodcastsPage() {
             </li>
           ))}
         </ul>
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "40px", paddingBottom: "75px" }}>
           <img src="/плашкаснизу.png" alt="" style={{ width: "107px", height: "21px", objectFit: "contain" }} />
         </div>
       </div>

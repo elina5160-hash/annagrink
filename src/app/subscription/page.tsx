@@ -289,7 +289,7 @@ function SubscriptionContent() {
             </a>
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "40px", paddingBottom: "75px" }}>
           <img src="/плашкаснизу.png" alt="" style={{ width: "107px", height: "21px", objectFit: "contain" }} />
         </div>
       </div>
