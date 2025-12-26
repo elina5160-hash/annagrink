@@ -479,7 +479,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
           />
         )}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: isHome ? "18px" : "15px" }}>
-          <svg width="343" height={isHome ? 270 : 414} viewBox={`0 0 343 ${isHome ? 270 : 414}`} fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+          <svg width="343" height={414} viewBox="0 0 343 414" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
             <defs>
               <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="#08102d" />
@@ -489,13 +489,9 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
             <rect y={0} width={162} height={126} rx={20} fill="url(#grad)" />
             <rect x={181} y={0} width={162} height={126} rx={20} fill="url(#grad)" />
             <rect y={144} width={162} height={126} rx={20} fill="url(#grad)" />
-            {!isHome && (
-              <rect y={288} width={162} height={126} rx={20} fill="url(#grad)" />
-            )}
             <rect x={181} y={144} width={162} height={126} rx={20} fill="url(#grad)" />
-            {!isHome && (
-              <rect x={181} y={288} width={162} height={126} rx={20} fill="url(#grad)" />
-            )}
+            <rect y={288} width={162} height={126} rx={20} fill="url(#grad)" />
+            <rect x={181} y={288} width={162} height={126} rx={20} fill="url(#grad)" />
           </svg>
           {isHome && (
             <>
@@ -721,6 +717,120 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     }}
                   >
                     о клубе
+                  </span>
+                  <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
+                </div>
+              </Link>
+              <Link
+                href="/lessons"
+                className="absolute z-20"
+                style={{
+                  left: 0,
+                  top: "288px",
+                  width: "162px",
+                  height: "126px",
+                  display: "block",
+                }}
+              >
+                <img
+                  src="/книга.png"
+                  alt="книга"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                    objectFit: "contain"
+                  }}
+                />
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
+                  }}
+                >
+                  <span
+                    style={{
+                      background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    уроки
+                  </span>
+                  <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
+                </div>
+              </Link>
+              <Link
+                href="/razbory"
+                className="absolute z-20"
+                style={{
+                  left: "181px",
+                  top: "288px",
+                  width: "162px",
+                  height: "126px",
+                  display: "block",
+                }}
+              >
+                <img
+                  src="/планета.png"
+                  alt="планета"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                    objectFit: "contain"
+                  }}
+                />
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
+                  }}
+                >
+                  <span
+                    style={{
+                      background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    разборы
                   </span>
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
