@@ -180,11 +180,9 @@ export default function AstrostatyiPage() {
             alt="woman"
             style={{ width: "110px", height: "120px", objectFit: "cover", objectPosition: "top", alignSelf: "flex-end" }}
           />
-          <img
-            src="/Group 454_hq.png"
-            alt="decor"
-            style={{ width: "172px", height: "34px", objectFit: "contain" }}
-          />
+          <div className="font-libertinus" style={{ fontSize: "17px", fontWeight: 400, background: "linear-gradient(90deg, #F4D990 0%, #CB9B3D 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+            Клуб «Предназначение»
+          </div>
         </div>
       </div>
       <div className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "15px" }}>
