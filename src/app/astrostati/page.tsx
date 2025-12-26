@@ -356,11 +356,18 @@ export default function AstrostatyiPage() {
             position: "relative",
           }}
         >
-          <img
-            src="/куратору2.png"
-            alt="написать куратору"
-            style={{ width: "100%", height: "auto", borderRadius: "5px", display: "block" }}
-          />
+          <a
+            href="https://t.me/+Fm-0h0ZFMxYwNGJi"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "block" }}
+          >
+            <img
+              src="/куратору2.png"
+              alt="написать куратору"
+              style={{ width: "100%", height: "auto", borderRadius: "5px", display: "block" }}
+            />
+          </a>
           
         </div>
         <div style={{ display: "flex", justifyContent: "center", marginTop: "40px", paddingBottom: "75px" }}>
