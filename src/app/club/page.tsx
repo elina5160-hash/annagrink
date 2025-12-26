@@ -58,7 +58,7 @@ export default function ClubPage() {
                   textAlign: "left",
                 }}
               >
-                «Секретный клуб Анны Гриньковой» – это клуб по подписке для тех, кто хочет быть в поддерживающем пространстве и&nbsp;нуждается в мягкой трансформации.
+                Клуб «Предназначение» – это клуб по подписке для тех, кто хочет быть в поддерживающем пространстве и&nbsp;нуждается в мягкой трансформации.
               </div>
             </div>
             <div
@@ -104,19 +104,19 @@ export default function ClubPage() {
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                     <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
                     <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
-                      Для новичков, которые только начинают погружение в астропсихологию
+                      для тех, кто хочет найти свое предназначение в жизни
                     </div>
                   </div>
                   <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
                     <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
                     <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
-                      Для профессиональных астропсихологов, которые хотят находиться в поддерживающем пространстве и находить клиентов
+                      для людей, которые хотят понять, как богатеть без усилий, вернуть себе поток и начать принимать масштабные решения в жизни
                     </div>
                   </div>
                   <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
                     <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
                     <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
-                      Для тех, кто хочет расти и становиться лучше день за днём, находить путь к самому себе
+                      для тех, кто хочет выйти из разрушительных родовых сценариев, не отрицая род, а занимая свое корректное место
                     </div>
                   </div>
                 </div>
