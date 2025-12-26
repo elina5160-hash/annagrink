@@ -7,7 +7,7 @@ export function BottomBar() {
   const isClub = pathname === "/" || pathname.startsWith("/club")
   const isSupport = pathname.startsWith("/support")
   const isSubscription = pathname.startsWith("/subscription")
-  const isHome = pathname.startsWith("/home")
+  const isHome = pathname.startsWith("/home") || pathname.startsWith("/astrostati") || pathname.startsWith("/podcasts")
   return (
     <div className="fixed bottom-0 left-1/2 -translate-x-1/2 z-30 w-[393px] h-[65px] rounded-t-[20px] bg-[#d3b589] flex items-center justify-between px-6">
       <Link href="/club" className="flex flex-col items-center justify-center">
