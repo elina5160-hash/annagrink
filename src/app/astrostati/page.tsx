@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import { BottomBar } from "../../components/ui/bottom-bar"
 import { useState, useSyncExternalStore, useEffect } from "react"
 
 const ASTRO_WATCHED_EVENT = "astrostati:watched-change"
@@ -373,7 +374,7 @@ export default function AstrostatyiPage() {
           <img
             src="/куратору2.png"
             alt="написать куратору"
-            style={{ width: "100%", height: "auto", borderRadius: "12px", display: "block" }}
+            style={{ width: "100%", height: "auto", borderRadius: "5px", display: "block" }}
           />
           
         </div>
@@ -381,6 +382,7 @@ export default function AstrostatyiPage() {
           <img src="/плашкаснизу.png" alt="" style={{ width: "107px", height: "21px", objectFit: "contain" }} />
         </div>
       </div>
+      <BottomBar />
     </div>
   )
 }

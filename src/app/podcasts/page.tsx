@@ -1,4 +1,5 @@
 "use client"
+import { BottomBar } from "../../components/ui/bottom-bar"
 import { useSyncExternalStore, useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -407,6 +408,7 @@ export default function PodcastsPage() {
           <img src="/плашкаснизу.png" alt="" style={{ width: "107px", height: "21px", objectFit: "contain" }} />
         </div>
       </div>
+      <BottomBar />
     </div>
   )
 }
