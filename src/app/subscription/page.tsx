@@ -83,7 +83,7 @@ function SubscriptionContent() {
           <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", width: "342px", height: "127px", borderRadius: "20px", background: "linear-gradient(180deg, #08102D 0%, #1A285B 100%)" }}>
             <img src="/1d.png" alt="" style={{ position: "absolute", top: "15px", right: "15px", width: "45px", height: "auto", objectFit: "contain" }} />
             <img src="/3d.png" alt="" style={{ position: "absolute", bottom: "20px", left: "55%", width: "12px", height: "auto", objectFit: "contain" }} />
-            <img src="/2d.png" alt="" style={{ position: "absolute", bottom: "35px", right: "45px", width: "18px", height: "auto", objectFit: "contain" }} />
+            <img src="/2d.png" alt="" style={{ position: "absolute", bottom: "20px", right: "45px", width: "18px", height: "auto", objectFit: "contain" }} />
             <img src="/woman.png" alt="woman" style={{ width: "110px", height: "120px", objectFit: "cover", objectPosition: "top", alignSelf: "flex-end", zIndex: 1 }} />
             <div className="font-libertinus" style={{ fontSize: "17px", fontWeight: 400, background: "linear-gradient(90deg, #F4D990 0%, #CB9B3D 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textTransform: "uppercase", textAlign: "left", lineHeight: "110%", marginLeft: "-10px", zIndex: 1 }}>
               Клуб<br />«Предназначение»
