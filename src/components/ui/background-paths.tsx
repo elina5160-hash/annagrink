@@ -451,70 +451,17 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
     >
       <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mt-[20px] mb-0">
-          <svg width="343" height="128" viewBox="0 0 343 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="diz2_grad" x1="171.465" y1="0" x2="171.465" y2="127.969" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#08102D" />
-                <stop offset="1" stopColor="#1A285B" />
-              </linearGradient>
-            </defs>
-            <rect width="342.93" height="127.969" rx="20" fill="url(#diz2_grad)" />
-          </svg>
-          <Link
-            href="/admin"
-            className="absolute z-10"
-            style={{
-              left: "22.9453px",
-              top: "7.63574px",
-              width: "110.389px",
-              height: "120.333px",
-              display: "block",
-              borderRadius: "6px",
-              overflow: "hidden",
-              transition: "transform 150ms ease",
-            }}
-            onMouseDown={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(0.98)"
-            }}
-            onMouseUp={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
-            }}
-          >
-            <img
-              src="/woman.png"
-              alt="woman"
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
-            />
-          </Link>
-          {hiddenBanners.includes("ikonkatx") ? null : (
-            <img
-              src="/ikonkatx_hq.png"
-              alt="ikonkatx"
-              className="absolute z-10"
-              style={{
-                right: "25px",
-                top: "15px",
-                width: "173px",
-                height: "35px",
-              }}
-            />
-          )}
-          {hiddenBanners.includes("спецпредл") ? null : (
-            <img
-              src="/спецпредл.svg"
-              alt="спецпредл"
-              className="absolute z-10"
-              style={{
-                right: "25px",
-                top: "64px",
-                width: "189px",
-                height: "70px",
-              }}
-            />
-          )}
+          <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", width: "342px", height: "127px", borderRadius: "20px", background: "linear-gradient(180deg, #08102D 0%, #1A285B 100%)" }}>
+            <img src="/1d.png" alt="" style={{ position: "absolute", top: "15px", right: "15px", width: "45px", height: "auto", objectFit: "contain" }} />
+            <img src="/3d.png" alt="" style={{ position: "absolute", bottom: "20px", left: "55%", width: "12px", height: "auto", objectFit: "contain" }} />
+            <img src="/2d.png" alt="" style={{ position: "absolute", bottom: "20px", right: "45px", width: "18px", height: "auto", objectFit: "contain" }} />
+            <Link href="/admin" style={{ alignSelf: "flex-end", zIndex: 1 }}>
+              <img src="/woman.png" alt="woman" style={{ width: "110px", height: "120px", objectFit: "cover", objectPosition: "top", display: "block" }} />
+            </Link>
+            <div className="font-libertinus" style={{ fontSize: "17px", fontWeight: 400, background: "linear-gradient(90deg, #F4D990 0%, #CB9B3D 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textTransform: "uppercase", textAlign: "left", lineHeight: "110%", marginLeft: "-10px", zIndex: 1 }}>
+              Клуб<br />«Предназначение»
+            </div>
+          </div>
         </motion.div>
         {!isHome && (
           <div
