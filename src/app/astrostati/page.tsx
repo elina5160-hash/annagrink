@@ -158,7 +158,7 @@ export default function AstrostatyiPage() {
           }}
         >
           <svg width="3" height="5" viewBox="0 0 3 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.37549 0.312988L0.641113 2.47421L2.37549 4.63586" stroke="white" strokeWidth="1" />
+            <path d="M2.37549 0.312988L0.641113 2.47421L2.37549 4.63426" stroke="white" strokeWidth="1" />
           </svg>
           назад
         </Link>
@@ -268,7 +268,7 @@ export default function AstrostatyiPage() {
                       <img src="/ikonastro.svg" alt="ikonastro" width={24} height={24} style={{ objectFit: "contain" }} />
                       <div
                         className="font-libertinus"
-                        style={{ fontSize: "14px", lineHeight: "120%", wordBreak: "break-word", marginLeft: "12px" }}
+                        style={{ fontSize: "17px", fontWeight: 400, lineHeight: "120%", wordBreak: "break-word", marginLeft: "12px" }}
                       >
                         {t}
                       </div>
@@ -332,7 +332,7 @@ export default function AstrostatyiPage() {
                         <circle cx="12" cy="12" r="11" fill="#D9D9D9" />
                         <circle cx="12" cy="12" r="11" fill="url(#astro_paint0_linear)" />
                         <svg x="8.5" y="7.5" width="7" height="9" viewBox="0 0 7 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M7.00964 4.047L0 8.09402V0L7.00964 4.047Z" fill="#0d1739" />
+                          <path d="M7.00964 4.047L0 8.09402V0L7.00964 4.047Z" fill="#0d1819" />
                         </svg>
                         <defs>
                           <linearGradient id="astro_paint0_linear" x1="0" y1="12" x2="24" y2="12" gradientUnits="userSpaceOnUse">

@@ -217,7 +217,7 @@ export default function AdminLinksPage() {
           }}
         >
           <svg width="3" height="5" viewBox="0 0 3 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.37549 0.312988L0.641113 2.47421L2.37549 4.63586" stroke="white" strokeWidth="1" />
+            <path d="M2.37549 0.312988L0.641113 2.47421L2.37549 4.63426" stroke="white" strokeWidth="1" />
           </svg>
           назад
         </Link>

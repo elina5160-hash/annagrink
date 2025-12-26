@@ -103,6 +103,22 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
     const p = Math.min(100, Math.max(0, Math.round((totalWatched / totalItems) * 100)))
     return p
   }, [podcastsWatched, astrostatiWatched, podcastsTotal, astrostatiTotal])
+
+  const getRankMessage = (p: number) => {
+    let rank = "ТОП-100";
+    if (p >= 90) rank = "ТОП-1";
+    else if (p >= 75) rank = "ТОП-10";
+    else if (p >= 50) rank = "ТОП-20";
+    else if (p >= 25) rank = "ТОП-50";
+
+    return (
+      <>
+        Вы входите в {rank} <br />
+        участников
+      </>
+    );
+  }
+
   if (isSupport) {
     return (
       <div
@@ -201,7 +217,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                             </defs>
                           </svg>
                         )}
-                        <div className="font-libertinus" style={{ fontSize: "14px", lineHeight: "120%", wordBreak: "break-word", marginLeft: "12px" }}>
+                        <div className="font-libertinus" style={{ fontSize: "17px", fontWeight: 400, lineHeight: "120%", wordBreak: "break-word", marginLeft: "12px" }}>
                           {c.title}
                         </div>
                       </div>
@@ -452,6 +468,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
       <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mt-[20px] mb-0">
           <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", width: "342px", height: "127px", borderRadius: "20px", background: "linear-gradient(180deg, #08102D 0%, #1A285B 100%)" }}>
+            <img src="/кар5.png" alt="" style={{ position: "absolute", top: "15px", right: "15px", width: "70px", height: "auto", objectFit: "contain", opacity: 0.9 }} />
             <img src="/1d.png" alt="" style={{ position: "absolute", top: "15px", right: "15px", width: "45px", height: "auto", objectFit: "contain" }} />
             <img src="/3d.png" alt="" style={{ position: "absolute", bottom: "20px", left: "55%", width: "12px", height: "auto", objectFit: "contain" }} />
             <img src="/2d.png" alt="" style={{ position: "absolute", bottom: "20px", right: "45px", width: "18px", height: "auto", objectFit: "contain" }} />
@@ -500,15 +517,15 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 className="absolute z-20"
                 style={{
                   left: 0,
-                  top: 0,
+                  top: "288px",
                   width: "162px",
                   height: "126px",
                   display: "block",
                 }}
               >
                 <img
-                  src="/1пл.svg"
-                  alt="2751"
+                  src="/книга.png"
+                  alt="книга"
                   width="82"
                   height="82"
                   className="absolute z-20"
@@ -524,7 +541,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -532,7 +549,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     gap: "5px",
                     width: "128px",
                     textAlign: "left",
@@ -580,7 +597,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -588,7 +605,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     gap: "5px",
                     width: "128px",
                     textAlign: "left",
@@ -620,25 +637,11 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   display: "block",
                 }}
               >
-                <img
-                  src="/kalendar.svg"
-                  alt="kalendar"
-                  width="82"
-                  height="82"
-                  className="absolute z-20"
-                  style={{
-                    right: "8px",
-                    top: "17px",
-                    width: "81px",
-                    height: "81px",
-                    opacity: 0.7,
-                  }}
-                />
                 <div
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -646,7 +649,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     gap: "5px",
                     width: "128px",
                     textAlign: "left",
@@ -664,6 +667,20 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   </span>
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
+                <img
+                  src="/kalendar.svg"
+                  alt="kalendar"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                  }}
+                />
               </a>
               <Link
                 href="/club"
@@ -694,7 +711,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -702,7 +719,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     gap: "5px",
                     width: "128px",
                     textAlign: "left",
@@ -716,7 +733,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    о клубе
+                    чат
                   </span>
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
@@ -726,15 +743,15 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 className="absolute z-20"
                 style={{
                   left: 0,
-                  top: "288px",
+                  top: 0,
                   width: "162px",
                   height: "126px",
                   display: "block",
                 }}
               >
                 <img
-                  src="/книга.png"
-                  alt="книга"
+                  src="/1пл.svg"
+                  alt="2751"
                   width="82"
                   height="82"
                   className="absolute z-20"
@@ -744,14 +761,13 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     width: "81px",
                     height: "81px",
                     opacity: 0.7,
-                    objectFit: "contain"
                   }}
                 />
                 <div
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -759,7 +775,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     gap: "5px",
                     width: "128px",
                     textAlign: "left",
@@ -801,14 +817,13 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     width: "81px",
                     height: "81px",
                     opacity: 0.7,
-                    objectFit: "contain"
                   }}
                 />
                 <div
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -816,7 +831,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     textTransform: "uppercase",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
+                    justifyContent: "flex-start",
                     gap: "5px",
                     width: "128px",
                     textAlign: "left",
@@ -852,7 +867,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     top: "17px",
                     width: "150px",
                     fontWeight: 400,
@@ -873,7 +888,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 <div
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     width: "130px",
                     fontFamily: "var(--font-family, var(--font-geist-sans))",
@@ -900,7 +915,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     top: "17px",
                     width: "150px",
                     fontWeight: 400,
@@ -921,7 +936,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 <div
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     width: "130px",
                     fontFamily: "var(--font-family, var(--font-geist-sans))",
@@ -948,7 +963,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     top: "17px",
                     width: "150px",
                     fontWeight: 400,
@@ -967,7 +982,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 <div
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     width: "130px",
                     fontFamily: "var(--font-family, var(--font-geist-sans))",
@@ -994,7 +1009,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     top: "17px",
                     width: "150px",
                     fontWeight: 400,
@@ -1013,7 +1028,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 <div
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     width: "130px",
                     fontFamily: "var(--font-family, var(--font-geist-sans))",
@@ -1041,7 +1056,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     top: "17px",
                     width: "150px",
                     fontWeight: 400,
@@ -1060,7 +1075,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 <div
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     width: "130px",
                     fontFamily: "var(--font-family, var(--font-geist-sans))",
@@ -1088,7 +1103,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     top: "17px",
                     width: "150px",
                     fontWeight: 400,
@@ -1107,7 +1122,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 <div
                   style={{
                     position: "absolute",
-                    left: "17px",
+                    left: "19px",
                     bottom: "18px",
                     width: "130px",
                     fontFamily: "var(--font-family, var(--font-geist-sans))",
@@ -1124,16 +1139,19 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
             </>
           )}
         </motion.div>
+        <div className="relative max-w-[358px] mx-auto" style={{ marginTop: "13px" }}>
+          <img src="/плашкадл.png" alt="" style={{ width: "100%", height: "auto", display: "block" }} />
+        </div>
         {isHome && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "18px" }}>
-            <svg width="342" height="264" viewBox="0 0 342 264" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "13px" }}>
+            <svg width="342" height="160" viewBox="0 0 342 160" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="dyn_grad" x1="171" y1="264" x2="171" y2="0" gradientUnits="userSpaceOnUse">
+                <linearGradient id="dyn_grad" x1="171" y1="160" x2="171" y2="0" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stopColor="#08102d" />
                   <stop offset="100%" stopColor="#1a285b" />
                 </linearGradient>
               </defs>
-              <rect width="342" height="264" rx="20" fill="url(#dyn_grad)" />
+              <rect width="342" height="160" rx="20" fill="url(#dyn_grad)" />
             </svg>
             <div
               className="absolute z-20"
@@ -1141,56 +1159,72 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 left: 0,
                 top: 0,
                 width: "342px",
-                height: "264px",
+                height: "160px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "0 24px",
               }}
             >
-              <div
-                style={{
-                  position: "absolute",
-                  left: "18px",
-                  top: "18px",
-                  fontFamily: "var(--second-family)",
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-start", maxWidth: "160px" }}>
+                <div
+                  className="font-libertinus"
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textAlign: "left",
+                  }}
+                >
+                  Личная динамика
+                </div>
+                <div style={{
+                  fontFamily: "Inter, sans-serif",
                   fontWeight: 400,
-                  fontSize: "17px",
-                  lineHeight: "95%",
-                  textTransform: "uppercase",
-                  background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Личная динамика
+                  fontSize: "11px",
+                  lineHeight: "120%",
+                  color: "#fff",
+                  textAlign: "left",
+                }}>
+                  {getRankMessage(percent)}
+                </div>
               </div>
-              <div style={{ position: "absolute", left: 0, right: 0, top: "72px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <div style={{ position: "relative", width: "149px", height: "149px", borderRadius: "100%" }}>
-                  <svg width="149" height="149" viewBox="0 0 149 149" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
-                    <defs>
-                      <linearGradient id="dyn_ring_gold" x1="0" y1="74.5" x2="149" y2="74.5" gradientUnits="userSpaceOnUse">
-                        <stop stopColor="#F4D990" />
-                        <stop offset="1" stopColor="#CB9B3D" />
-                      </linearGradient>
-                      <linearGradient id="dyn_ring_blue" x1="0" y1="0" x2="0" y2="149" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stopColor="#08102D" />
-                        <stop offset="100%" stopColor="#1A285B" />
-                      </linearGradient>
-                    </defs>
-                    <circle
-                      cx="74.5"
-                      cy="74.5"
-                      r="64"
-                      stroke="url(#dyn_ring_gold)"
-                      strokeWidth="12"
-                      fill="none"
-                      strokeDasharray={`${(percent / 100) * (2 * Math.PI * 64)} ${(100 / 100) * (2 * Math.PI * 64)}`}
-                      strokeLinecap="butt"
-                      transform="rotate(-90 74.5 74.5)"
-                    />
-                  </svg>
-                  <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                    <div style={{ fontFamily: "var(--second-family)", fontWeight: 400, fontSize: "29px", lineHeight: "95%", textTransform: "uppercase", color: "#d3b589" }}>{percent}%</div>
-                    <div style={{ opacity: 0.6, fontFamily: "var(--second-family)", fontWeight: 400, fontSize: "12px", lineHeight: "130%", color: "#d3b589", textTransform: "none" }}>обучения<br />пройдено</div>
-                  </div>
+              <div style={{ position: "relative", width: "120px", height: "120px", borderRadius: "100%" }}>
+                <svg width="120" height="120" viewBox="0 0 149 149" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+                  <defs>
+                    <linearGradient id="dyn_ring_gold" x1="0" y1="74.5" x2="149" y2="74.5" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#F4D990" />
+                      <stop offset="1" stopColor="#CB9B3D" />
+                    </linearGradient>
+                  </defs>
+                  <circle
+                    cx="74.5"
+                    cy="74.5"
+                    r="64"
+                    stroke="#1A285B"
+                    strokeWidth="12"
+                    fill="none"
+                  />
+                  <circle
+                    cx="74.5"
+                    cy="74.5"
+                    r="64"
+                    stroke="url(#dyn_ring_gold)"
+                    strokeWidth="12"
+                    fill="none"
+                    strokeDasharray={`${(percent / 100) * (2 * Math.PI * 64)} ${(2 * Math.PI * 64)}`}
+                    strokeLinecap="round"
+                    transform="rotate(-90 74.5 74.5)"
+                  />
+                </svg>
+                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ fontFamily: "Select, sans-serif", fontWeight: 400, fontSize: "28px", lineHeight: "95%", textTransform: "uppercase", color: "#d3b589" }}>{percent}%</div>
+                  <div style={{ opacity: 0.6, fontFamily: "var(--second-family)", fontWeight: 400, fontSize: "10px", lineHeight: "130%", color: "#d3b589", textTransform: "none", textAlign: "center" }}>пройденной<br />информации</div>
                 </div>
               </div>
             </div>
