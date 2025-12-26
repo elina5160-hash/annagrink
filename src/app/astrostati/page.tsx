@@ -182,15 +182,15 @@ export default function AstrostatyiPage() {
             style={{ position: "absolute", top: "15px", right: "15px", width: "45px", height: "auto", objectFit: "contain" }}
           />
           <img
-            src="/2d.png"
-            alt=""
-            style={{ position: "absolute", bottom: "20px", left: "55%", width: "18px", height: "auto", objectFit: "contain" }}
-          />
-          <img
-            src="/3d.png"
-            alt=""
-            style={{ position: "absolute", bottom: "35px", right: "45px", width: "12px", height: "auto", objectFit: "contain" }}
-          />
+             src="/3d.png"
+             alt=""
+             style={{ position: "absolute", bottom: "20px", left: "55%", width: "12px", height: "auto", objectFit: "contain" }}
+           />
+           <img
+             src="/2d.png"
+             alt=""
+             style={{ position: "absolute", bottom: "35px", right: "45px", width: "18px", height: "auto", objectFit: "contain" }}
+           />
           <img
             src="/woman.png"
             alt="woman"
