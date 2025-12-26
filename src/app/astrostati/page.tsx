@@ -180,8 +180,8 @@ export default function AstrostatyiPage() {
             alt="woman"
             style={{ width: "110px", height: "120px", objectFit: "cover", objectPosition: "top", alignSelf: "flex-end" }}
           />
-          <div className="font-libertinus" style={{ fontSize: "17px", fontWeight: 400, background: "linear-gradient(90deg, #F4D990 0%, #CB9B3D 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-            Клуб «Предназначение»
+          <div className="font-libertinus" style={{ fontSize: "17px", fontWeight: 400, background: "linear-gradient(90deg, #F4D990 0%, #CB9B3D 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", textTransform: "uppercase", textAlign: "left", lineHeight: "110%" }}>
+            Клуб<br />«Предназначение»
           </div>
         </div>
       </div>
