@@ -258,21 +258,6 @@ export default function LessonsPage() {
                   </div>
                   <span style={{ marginLeft: 4 }}>Просмотрено</span>
                 </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    right: 16,
-                    top: 12,
-                    color: "#fff",
-                    fontFamily: "var(--font-family)",
-                    fontWeight: 400,
-                    fontSize: 10,
-                    lineHeight: "130%",
-                    opacity: 0.8,
-                  }}
-                >
-                  6:33
-                </div>
                 <div className="flex items-center gap-3" style={{ position: "relative" }}>
                   <svg
                     width="24"
