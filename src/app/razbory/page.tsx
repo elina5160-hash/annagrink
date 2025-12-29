@@ -134,7 +134,7 @@ export default function RazboryPage() {
           width: "calc(100% - 140px)",
           marginLeft: "70px",
           marginRight: "70px",
-          marginTop: "14px",
+          marginTop: "28px",
           position: "relative",
         }}
       >
