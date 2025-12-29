@@ -124,6 +124,70 @@ export default function LessonsPage() {
           </div>
         </div>
       </div>
+      <div className="w-full max-w-[343px] mt-4">
+        <ul className="space-y-2">
+          {[
+            "Урок 1. «Какие качества нужно проявлять, чтобы прийти к успеху и перестать стоять на одном месте?»",
+            "Урок 2. «Какая сфера жизни изменится на 180 градусов в 2026?»",
+            "Урок 3. «Как преодолеть финансовый потолок?»",
+            "Урок 4. «Большие деньги в астропсихологии: как найти ключ»",
+          ].map((t, idx) => (
+            <li key={idx}>
+              <a
+                href="#"
+                className="group rounded-xl"
+                style={{
+                  background: "linear-gradient(180deg, #08102d 0%, #1a285b 100%)",
+                  color: "#fff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "12px 16px",
+                  position: "relative",
+                  minHeight: "58px",
+                  borderRadius: "20px",
+                }}
+                onClick={(e) => e.preventDefault()}
+              >
+                <div style={{ display: "grid", gridTemplateColumns: "26px 1fr", alignItems: "center", columnGap: 12 }}>
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+                    <circle cx="12.5483" cy="12.5483" r="12.5483" fill="#D9D9D9" />
+                    <circle cx="12.5483" cy="12.5483" r="12.5483" fill="url(#paint0_linear_280_563)" />
+                    <path d="M17.2187 12.5481L10.2091 16.5951L10.2091 8.50108L17.2187 12.5481Z" fill="#0D1739" />
+                    <defs>
+                      <linearGradient id="paint0_linear_280_563" x1="0" y1="12.5483" x2="25.0967" y2="12.5483" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#F4D990" />
+                        <stop offset="1" stopColor="#CB9B3D" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="font-libertinus" style={{ fontSize: "17px", fontWeight: 400, lineHeight: "120%", wordBreak: "break-word" }}>
+                    {t}
+                  </div>
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    right: 16,
+                    top: 12,
+                    color: "#fff",
+                    fontFamily: "var(--font-family)",
+                    fontWeight: 400,
+                    fontSize: 10,
+                    lineHeight: "130%",
+                    opacity: 0.8,
+                  }}
+                >
+                  6:33
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "40px", paddingBottom: "75px" }}>
+          <img src="/плашкаснизу.png" alt="" style={{ width: "107px", height: "21px", objectFit: "contain" }} />
+        </div>
+      </div>
       <BottomBar />
     </div>
   )
