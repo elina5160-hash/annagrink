@@ -129,6 +129,39 @@ export default function RazboryPage() {
           </div>
         </div>
       </div>
+      <div
+        style={{
+          width: "calc(100% - 140px)",
+          marginLeft: "70px",
+          marginRight: "70px",
+          marginTop: "14px",
+          position: "relative",
+        }}
+      >
+        <Link
+          href="https://t.me/+Fm-0h0ZFMxYwNGJi"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: "35px",
+            borderRadius: "5px",
+            background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+            fontFamily: "var(--font-family)",
+            fontWeight: 400,
+            fontSize: "10px",
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            color: "#48351b",
+            textDecoration: "none",
+          }}
+        >
+          КАНАЛ
+        </Link>
+      </div>
       <BottomBar />
     </div>
   )
