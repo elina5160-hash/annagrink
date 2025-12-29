@@ -548,7 +548,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "19px",
+                    left: "14px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -612,7 +612,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "19px",
+                    left: "14px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -667,7 +667,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "19px",
+                    left: "14px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -745,7 +745,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "19px",
+                    left: "14px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -806,7 +806,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "19px",
+                    left: "14px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -873,7 +873,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "19px",
+                    left: "14px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
