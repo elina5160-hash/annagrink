@@ -4,11 +4,9 @@ import { BottomBar } from "../../components/ui/bottom-bar"
 import { useSyncExternalStore, useState, useEffect } from "react"
 
 export default function LessonsPage() {
-  const lessons = [
-    "Урок 1. «Какие качества нужно проявлять, чтобы прийти к успеху и перестать стоять на одном месте?»",
-    "Урок 2. «Какая сфера жизни изменится на 180 градусов в 2026?»",
-    "Урок 3. «Как преодолеть финансовый потолок?»",
-    "Урок 4. «Большие деньги в астропсихологии: как найти ключ»",
+  const lessons: Array<{ title: string; url: string }> = [
+    { title: "Лилит в натальной карте: теневая сторона личности", url: "https://t.me/c/2474417642/550" },
+    { title: "Венера в натальной карте", url: "https://t.me/c/2474417642/558" },
   ]
   function slugify(s: string) {
     return s.toLowerCase().replace(/[,.:?«»"']/g, "").replace(/\s+/g, "-")
@@ -182,10 +180,12 @@ export default function LessonsPage() {
       </div>
       <div className="w-full max-w-[343px] mt-4">
         <ul className="space-y-2">
-          {lessons.map((t, idx) => (
+          {lessons.map((it, idx) => (
             <li key={idx}>
               <a
-                href="#"
+                href={it.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group rounded-xl"
                 style={{
                   background: "linear-gradient(180deg, #08102d 0%, #1a285b 100%)",
@@ -198,9 +198,8 @@ export default function LessonsPage() {
                   minHeight: "58px",
                   borderRadius: "20px",
                 }}
-                onClick={(e) => {
-                  e.preventDefault()
-                  const slug = slugify(t)
+                onClick={() => {
+                  const slug = slugify(it.title)
                   try {
                     if (!watched.includes(slug)) toggleWatched(slug)
                     setBadgeSlug(slug)
@@ -223,7 +222,7 @@ export default function LessonsPage() {
                     </defs>
                   </svg>
                   <div className="font-libertinus" style={{ fontSize: "17px", fontWeight: 400, lineHeight: "120%", wordBreak: "break-word" }}>
-                    {t}
+                    {it.title}
                   </div>
                 </div>
                 <div
@@ -243,8 +242,8 @@ export default function LessonsPage() {
                     fontWeight: 400,
                     fontSize: 9,
                     lineHeight: "130%",
-                    opacity: watched.includes(slugify(t)) || badgeSlug === slugify(t) ? 1 : 0,
-                    transform: watched.includes(slugify(t)) || badgeSlug === slugify(t) ? "translateY(0)" : "translateY(-10px)",
+                    opacity: watched.includes(slugify(it.title)) || badgeSlug === slugify(it.title) ? 1 : 0,
+                    transform: watched.includes(slugify(it.title)) || badgeSlug === slugify(it.title) ? "translateY(0)" : "translateY(-10px)",
                     transition: "opacity 200ms ease, transform 200ms ease",
                   }}
                 >
@@ -269,7 +268,7 @@ export default function LessonsPage() {
                     onClick={(e) => {
                       e.preventDefault()
                       e.stopPropagation()
-                      const slug = slugify(t)
+                      const slug = slugify(it.title)
                       try {
                         if (!watched.includes(slug)) {
                           const prev = Array.isArray(WATCHED_CACHE) ? WATCHED_CACHE : []
