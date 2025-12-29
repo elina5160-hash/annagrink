@@ -29,6 +29,9 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
   const [podcastsWatched, setPodcastsWatched] = useState<string[]>([])
   const [astrostatiWatched, setAstrostatiWatched] = useState<string[]>([])
   const [scheduleWatched, setScheduleWatched] = useState<boolean>(false)
+  const [lessonsWatched, setLessonsWatched] = useState<string[]>([])
+  const [lessonsTotal, setLessonsTotal] = useState<number>(0)
+  const [uid, setUid] = useState<string | null>(null)
   const [podcastsTotal, setPodcastsTotal] = useState<number>(0)
   const [astrostatiTotal, setAstrostatiTotal] = useState<number>(0)
   useEffect(() => {
@@ -117,13 +120,32 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
       } catch {}
     }
   }, [])
+  useEffect(() => {
+    try {
+      const tg = (window as any)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
+      if (tg) setUid(String(tg))
+    } catch {}
+    try {
+      const lt = parseInt(localStorage.getItem("lessons:total") || "0", 10)
+      if (!isNaN(lt) && lt > 0) setLessonsTotal(lt)
+    } catch {}
+  }, [])
+  useEffect(() => {
+    if (!uid) return
+    fetch(`/api/progress/lessons?uid=${encodeURIComponent(uid)}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((j) => {
+        if (Array.isArray(j?.watched)) setLessonsWatched(j.watched.map((s: any) => String(s)))
+      })
+      .catch(() => {})
+  }, [uid])
   const percent = useMemo(() => {
-    const totalWatched = podcastsWatched.length + astrostatiWatched.length
-    const totalItems = podcastsTotal + astrostatiTotal
+    const totalWatched = podcastsWatched.length + astrostatiWatched.length + lessonsWatched.length
+    const totalItems = podcastsTotal + astrostatiTotal + lessonsTotal
     if (!totalItems) return 0
     const p = Math.min(100, Math.max(0, Math.round((totalWatched / totalItems) * 100)))
     return p
-  }, [podcastsWatched, astrostatiWatched, podcastsTotal, astrostatiTotal])
+  }, [podcastsWatched, astrostatiWatched, lessonsWatched, podcastsTotal, astrostatiTotal, lessonsTotal])
 
   const getRankMessage = (p: number) => {
     let rank = "ТОП-100";
@@ -671,19 +693,12 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   width: "162px",
                   height: "126px",
                   display: "block",
-                  position: "relative",
                 }}
                 onClick={(e) => {
-                  e.preventDefault()
                   try {
                     localStorage.setItem("schedule:watched", "1")
                     window.dispatchEvent(new Event("schedule:watched-change"))
                   } catch {}
-                  try {
-                    window.open("https://t.me/c/2474417642/559", "_blank", "noopener,noreferrer")
-                  } catch {
-                    window.location.href = "https://t.me/c/2474417642/559"
-                  }
                 }}
               >
                 <div style={{ position: "absolute", left: "0px", top: "0px", width: "100%", height: "100%", pointerEvents: "none", zIndex: 20 }}>

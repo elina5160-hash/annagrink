@@ -15,6 +15,7 @@ export default function LessonsPage() {
   const WATCHED_KEY = "lessons:watched"
   const EMPTY_WATCHED: string[] = []
   let WATCHED_CACHE: string[] = EMPTY_WATCHED
+  const [uid, setUid] = useState<string | null>(null)
   function subscribeWatched(cb: () => void) {
     const handler = () => {
       try {
@@ -42,6 +43,13 @@ export default function LessonsPage() {
       const init = initRaw ? JSON.parse(initRaw) : []
       WATCHED_CACHE = Array.isArray(init) ? init : EMPTY_WATCHED
       window.dispatchEvent(new Event(WATCHED_EVENT))
+    } catch {}
+    try {
+      const tg = (window as any)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
+      if (tg) setUid(String(tg))
+    } catch {}
+    try {
+      localStorage.setItem("lessons:total", String(lessons.length))
     } catch {}
   }, [])
   function toggleWatched(slug: string) {
@@ -207,6 +215,15 @@ export default function LessonsPage() {
                       setBadgeSlug((s) => (s === slug ? null : s))
                     }, 1200)
                   } catch {}
+                  try {
+                    if (uid) {
+                      fetch("/api/progress/lessons", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ uid, slug, action: "watch" }),
+                      }).catch(() => {})
+                    }
+                  } catch {}
                 }}
               >
                 <div style={{ display: "grid", gridTemplateColumns: "26px 1fr", alignItems: "center", columnGap: 12 }}>
@@ -263,26 +280,35 @@ export default function LessonsPage() {
                     height="24"
                     viewBox="0 0 12 9"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    style={{ marginLeft: "8px", cursor: "pointer" }}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
+                     xmlns="http://www.w3.org/2000/svg"
+                     style={{ marginLeft: "8px", cursor: "pointer" }}
+                     onClick={(e) => {
+                       e.preventDefault()
+                       e.stopPropagation()
                       const slug = slugify(it.title)
-                      try {
-                        if (!watched.includes(slug)) {
-                          const prev = Array.isArray(WATCHED_CACHE) ? WATCHED_CACHE : []
-                          const next = [...prev, slug]
-                          localStorage.setItem(WATCHED_KEY, JSON.stringify(next))
-                          WATCHED_CACHE = next
-                          window.dispatchEvent(new Event(WATCHED_EVENT))
-                        }
-                        setBadgeSlug(slug)
-                        setTimeout(() => {
-                          setBadgeSlug((s) => (s === slug ? null : s))
-                        }, 1200)
-                      } catch {}
-                    }}
+                       try {
+                         if (!watched.includes(slug)) {
+                           const prev = Array.isArray(WATCHED_CACHE) ? WATCHED_CACHE : []
+                           const next = [...prev, slug]
+                           localStorage.setItem(WATCHED_KEY, JSON.stringify(next))
+                           WATCHED_CACHE = next
+                           window.dispatchEvent(new Event(WATCHED_EVENT))
+                         }
+                         setBadgeSlug(slug)
+                         setTimeout(() => {
+                           setBadgeSlug((s) => (s === slug ? null : s))
+                         }, 1200)
+                       } catch {}
+                       try {
+                         if (uid) {
+                           fetch("/api/progress/lessons", {
+                             method: "POST",
+                             headers: { "Content-Type": "application/json" },
+                             body: JSON.stringify({ uid, slug, action: "watch" }),
+                           }).catch(() => {})
+                         }
+                       } catch {}
+                     }}
                   >
                     <path d="M1.5 4.5 L4.5 7.5 L10.5 1.5" stroke="#D9D9D9" strokeWidth={1.25} strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
