@@ -1,8 +1,64 @@
 "use client"
 import Link from "next/link"
 import { BottomBar } from "../../components/ui/bottom-bar"
+import { useSyncExternalStore, useState, useEffect } from "react"
 
 export default function LessonsPage() {
+  const lessons = [
+    "Урок 1. «Какие качества нужно проявлять, чтобы прийти к успеху и перестать стоять на одном месте?»",
+    "Урок 2. «Какая сфера жизни изменится на 180 градусов в 2026?»",
+    "Урок 3. «Как преодолеть финансовый потолок?»",
+    "Урок 4. «Большие деньги в астропсихологии: как найти ключ»",
+  ]
+  function slugify(s: string) {
+    return s.toLowerCase().replace(/[,.:?«»"']/g, "").replace(/\s+/g, "-")
+  }
+  const WATCHED_EVENT = "lessons:watched-change"
+  const WATCHED_KEY = "lessons:watched"
+  const EMPTY_WATCHED: string[] = []
+  let WATCHED_CACHE: string[] = EMPTY_WATCHED
+  function subscribeWatched(cb: () => void) {
+    const handler = () => {
+      try {
+        const raw = localStorage.getItem(WATCHED_KEY) || "[]"
+        const arr = JSON.parse(raw)
+        if (Array.isArray(arr)) {
+          const same = WATCHED_CACHE.length === arr.length && WATCHED_CACHE.every((v, i) => v === arr[i])
+          if (!same) WATCHED_CACHE = arr
+        } else {
+          if (WATCHED_CACHE.length) WATCHED_CACHE = []
+        }
+      } catch {}
+      cb()
+    }
+    if (typeof window !== "undefined") window.addEventListener(WATCHED_EVENT, handler as EventListener)
+    return () => {
+      if (typeof window !== "undefined") window.removeEventListener(WATCHED_EVENT, handler as EventListener)
+    }
+  }
+  const watched = useSyncExternalStore(subscribeWatched, () => WATCHED_CACHE, () => EMPTY_WATCHED)
+  const [badgeSlug, setBadgeSlug] = useState<string | null>(null)
+  useEffect(() => {
+    try {
+      const initRaw = localStorage.getItem(WATCHED_KEY)
+      const init = initRaw ? JSON.parse(initRaw) : []
+      WATCHED_CACHE = Array.isArray(init) ? init : EMPTY_WATCHED
+      window.dispatchEvent(new Event(WATCHED_EVENT))
+    } catch {}
+  }, [])
+  function toggleWatched(slug: string) {
+    try {
+      const prev = Array.isArray(WATCHED_CACHE) ? WATCHED_CACHE : []
+      const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug]
+      try {
+        localStorage.setItem(WATCHED_KEY, JSON.stringify(next))
+        WATCHED_CACHE = next
+      } catch {}
+      try {
+        window.dispatchEvent(new Event(WATCHED_EVENT))
+      } catch {}
+    } catch {}
+  }
   return (
     <div className="app-stars min-h-screen flex flex-col items-center px-4 py-6">
       <nav className="w-full max-w-[343px] flex justify-start mb-2">
@@ -126,12 +182,7 @@ export default function LessonsPage() {
       </div>
       <div className="w-full max-w-[343px] mt-4">
         <ul className="space-y-2">
-          {[
-            "Урок 1. «Какие качества нужно проявлять, чтобы прийти к успеху и перестать стоять на одном месте?»",
-            "Урок 2. «Какая сфера жизни изменится на 180 градусов в 2026?»",
-            "Урок 3. «Как преодолеть финансовый потолок?»",
-            "Урок 4. «Большие деньги в астропсихологии: как найти ключ»",
-          ].map((t, idx) => (
+          {lessons.map((t, idx) => (
             <li key={idx}>
               <a
                 href="#"
@@ -147,7 +198,17 @@ export default function LessonsPage() {
                   minHeight: "58px",
                   borderRadius: "20px",
                 }}
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => {
+                  e.preventDefault()
+                  const slug = slugify(t)
+                  try {
+                    if (!watched.includes(slug)) toggleWatched(slug)
+                    setBadgeSlug(slug)
+                    setTimeout(() => {
+                      setBadgeSlug((s) => (s === slug ? null : s))
+                    }, 1200)
+                  } catch {}
+                }}
               >
                 <div style={{ display: "grid", gridTemplateColumns: "26px 1fr", alignItems: "center", columnGap: 12 }}>
                   <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
@@ -169,6 +230,38 @@ export default function LessonsPage() {
                   style={{
                     position: "absolute",
                     right: 16,
+                    top: -12,
+                    zIndex: 10,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    padding: "2px 8px",
+                    borderRadius: 5,
+                    background: "#22926B",
+                    color: "#fff",
+                    fontFamily: "var(--font-family)",
+                    fontWeight: 400,
+                    fontSize: 9,
+                    lineHeight: "130%",
+                    opacity: watched.includes(slugify(t)) || badgeSlug === slugify(t) ? 1 : 0,
+                    transform: watched.includes(slugify(t)) || badgeSlug === slugify(t) ? "translateY(0)" : "translateY(-10px)",
+                    transition: "opacity 200ms ease, transform 200ms ease",
+                  }}
+                >
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 2 }}>
+                    <svg width="10" height="10" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.5 4.5 L4.5 7.5 L10.5 1.5" stroke="#D9D9D9" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <svg width="10" height="10" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.5 4.5 L4.5 7.5 L10.5 1.5" stroke="#D9D9D9" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <span style={{ marginLeft: 4 }}>Просмотрено</span>
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    right: 16,
                     top: 12,
                     color: "#fff",
                     fontFamily: "var(--font-family)",
@@ -179,6 +272,36 @@ export default function LessonsPage() {
                   }}
                 >
                   6:33
+                </div>
+                <div className="flex items-center gap-3" style={{ position: "relative" }}>
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 12 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{ marginLeft: "8px", cursor: "pointer" }}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      const slug = slugify(t)
+                      try {
+                        if (!watched.includes(slug)) {
+                          const prev = Array.isArray(WATCHED_CACHE) ? WATCHED_CACHE : []
+                          const next = [...prev, slug]
+                          localStorage.setItem(WATCHED_KEY, JSON.stringify(next))
+                          WATCHED_CACHE = next
+                          window.dispatchEvent(new Event(WATCHED_EVENT))
+                        }
+                        setBadgeSlug(slug)
+                        setTimeout(() => {
+                          setBadgeSlug((s) => (s === slug ? null : s))
+                        }, 1200)
+                      } catch {}
+                    }}
+                  >
+                    <path d="M1.5 4.5 L4.5 7.5 L10.5 1.5" stroke="#D9D9D9" strokeWidth={1.25} strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
               </a>
             </li>
