@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { BottomBar } from "../../components/ui/bottom-bar"
 
-export default function UrokiPage() {
+export default function LessonsPage() {
   return (
     <div className="app-stars min-h-screen flex flex-col items-center px-4 py-6">
       <nav className="w-full max-w-[343px] flex justify-start mb-2">
