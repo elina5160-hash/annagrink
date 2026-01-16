@@ -173,7 +173,9 @@ function SubscriptionContent() {
             </div>
             <div style={{ display: "flex", justifyContent: "flex-start" }}>
               <a
-                href="#"
+                href="https://t.me/AnnaGrinkovaClub_bot?start=Otmena"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",

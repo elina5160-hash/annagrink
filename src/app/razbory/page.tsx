@@ -162,6 +162,20 @@ export default function RazboryPage() {
           КАНАЛ
         </Link>
       </div>
+      <div
+        style={{
+          width: "calc(100% - 140px)",
+          marginLeft: "70px",
+          marginRight: "70px",
+          marginTop: "12px",
+          position: "relative",
+        }}
+      >
+        <img src="/пука2.png" alt="" style={{ width: "100%", height: "auto", borderRadius: "5px", display: "block" }} />
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "24px" }}>
+        <img src="/плашкаснизу.png" alt="" style={{ width: "107px", height: "21px", objectFit: "contain" }} />
+      </div>
       <BottomBar />
     </div>
   )
