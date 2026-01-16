@@ -21,17 +21,51 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
   const isHome = title === "ДОМОЙ";
   const isSupport = title === "ПОДДЕРЖКА";
   const isClub = title === "О КЛУБЕ";
-  const [hiddenBanners, setHiddenBanners] = useState<string[]>([])
-  const [homeCategories, setHomeCategories] = useState<Array<{ title: string; iconSrc?: string; href?: string }>>([])
+  const [hiddenBanners, setHiddenBanners] = useState<string[]>(() => {
+    try {
+      const hb = JSON.parse(typeof window !== "undefined" ? (localStorage.getItem("home:banners:hidden") || "[]") : "[]")
+      return Array.isArray(hb) ? hb : []
+    } catch {
+      return []
+    }
+  })
+  const [homeCategories, setHomeCategories] = useState<Array<{ title: string; iconSrc?: string; href?: string }>>(() => {
+    try {
+      const hc = JSON.parse(typeof window !== "undefined" ? (localStorage.getItem("home:categories") || "[]") : "[]")
+      return Array.isArray(hc) ? hc : []
+    } catch {
+      return []
+    }
+  })
   const [openAudience, setOpenAudience] = useState(false)
   const [openInside, setOpenInside] = useState(false)
   const [openTariff, setOpenTariff] = useState(false)
   const [podcastsWatched, setPodcastsWatched] = useState<string[]>([])
   const [astrostatiWatched, setAstrostatiWatched] = useState<string[]>([])
-  const [scheduleWatched, setScheduleWatched] = useState<boolean>(false)
+  const [scheduleWatched, setScheduleWatched] = useState<boolean>(() => {
+    try {
+      return typeof window !== "undefined" ? localStorage.getItem("schedule:watched") === "1" : false
+    } catch {
+      return false
+    }
+  })
   const [lessonsWatched, setLessonsWatched] = useState<string[]>([])
-  const [lessonsTotal, setLessonsTotal] = useState<number>(0)
-  const [uid, setUid] = useState<string | null>(null)
+  const [lessonsTotal, setLessonsTotal] = useState<number>(() => {
+    try {
+      const lt = parseInt(typeof window !== "undefined" ? (localStorage.getItem("lessons:total") || "0") : "0", 10)
+      return !isNaN(lt) && lt > 0 ? lt : 0
+    } catch {
+      return 0
+    }
+  })
+  const [uid, setUid] = useState<string | null>(() => {
+    try {
+      const tg = (typeof window !== "undefined" ? (window as any) : undefined)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
+      return tg ? String(tg) : null
+    } catch {
+      return null
+    }
+  })
   const [podcastsTotal, setPodcastsTotal] = useState<number>(0)
   const [astrostatiTotal, setAstrostatiTotal] = useState<number>(0)
   useEffect(() => {
@@ -69,14 +103,6 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
     }
   }, [isHome])
   useEffect(() => {
-    try {
-      const hb = JSON.parse(localStorage.getItem("home:banners:hidden") || "[]")
-      if (Array.isArray(hb)) setHiddenBanners(hb)
-    } catch {}
-    try {
-      const hc = JSON.parse(localStorage.getItem("home:categories") || "[]")
-      if (Array.isArray(hc)) setHomeCategories(hc)
-    } catch {}
     const onBanners = () => {
       try {
         const hb = JSON.parse(localStorage.getItem("home:banners:hidden") || "[]")
@@ -101,10 +127,6 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
     }
   }, [])
   useEffect(() => {
-    try {
-      const s = localStorage.getItem("schedule:watched") === "1"
-      setScheduleWatched(!!s)
-    } catch {}
     const onSchedule = () => {
       try {
         const s = localStorage.getItem("schedule:watched") === "1"
@@ -121,14 +143,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
     }
   }, [])
   useEffect(() => {
-    try {
-      const tg = (window as any)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
-      if (tg) setUid(String(tg))
-    } catch {}
-    try {
-      const lt = parseInt(localStorage.getItem("lessons:total") || "0", 10)
-      if (!isNaN(lt) && lt > 0) setLessonsTotal(lt)
-    } catch {}
+    // no-op: initial values are read in state initializers; keep effect for future expansions if needed
   }, [])
   useEffect(() => {
     if (!uid) return
@@ -138,6 +153,13 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
         if (Array.isArray(j?.watched)) setLessonsWatched(j.watched.map((s: any) => String(s)))
       })
       .catch(() => {})
+    try {
+      fetch(`/api/subscription/track`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: uid, source: "home" }),
+      }).catch(() => {})
+    } catch {}
   }, [uid])
   const percent = useMemo(() => {
     const totalWatched = podcastsWatched.length + astrostatiWatched.length + lessonsWatched.length

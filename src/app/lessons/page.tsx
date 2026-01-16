@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { BottomBar } from "../../components/ui/bottom-bar"
-import { useSyncExternalStore, useState, useEffect } from "react"
+import { useSyncExternalStore, useState, useEffect, useMemo } from "react"
 
 export default function LessonsPage() {
   const lessons: Array<{ title: string; url: string }> = [
@@ -14,20 +14,16 @@ export default function LessonsPage() {
   const WATCHED_EVENT = "lessons:watched-change"
   const WATCHED_KEY = "lessons:watched"
   const EMPTY_WATCHED: string[] = []
-  let WATCHED_CACHE: string[] = EMPTY_WATCHED
-  const [uid, setUid] = useState<string | null>(null)
+  const [uid, setUid] = useState<string | null>(() => {
+    try {
+      const tg = (typeof window !== "undefined" ? (window as any) : undefined)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
+      return tg ? String(tg) : null
+    } catch {
+      return null
+    }
+  })
   function subscribeWatched(cb: () => void) {
     const handler = () => {
-      try {
-        const raw = localStorage.getItem(WATCHED_KEY) || "[]"
-        const arr = JSON.parse(raw)
-        if (Array.isArray(arr)) {
-          const same = WATCHED_CACHE.length === arr.length && WATCHED_CACHE.every((v, i) => v === arr[i])
-          if (!same) WATCHED_CACHE = arr
-        } else {
-          if (WATCHED_CACHE.length) WATCHED_CACHE = []
-        }
-      } catch {}
       cb()
     }
     if (typeof window !== "undefined") window.addEventListener(WATCHED_EVENT, handler as EventListener)
@@ -35,30 +31,45 @@ export default function LessonsPage() {
       if (typeof window !== "undefined") window.removeEventListener(WATCHED_EVENT, handler as EventListener)
     }
   }
-  const watched = useSyncExternalStore(subscribeWatched, () => WATCHED_CACHE, () => EMPTY_WATCHED)
+  const watchedStr = useSyncExternalStore(
+    subscribeWatched,
+    () => {
+      try {
+        return localStorage.getItem(WATCHED_KEY) || "[]"
+      } catch {
+        return "[]"
+      }
+    },
+    () => "[]"
+  )
+  const watched = useMemo(() => {
+    try {
+      const arr = JSON.parse(watchedStr)
+      return Array.isArray(arr) ? arr.map((s: any) => String(s)) : EMPTY_WATCHED
+    } catch {
+      return EMPTY_WATCHED
+    }
+  }, [watchedStr])
   const [badgeSlug, setBadgeSlug] = useState<string | null>(null)
   useEffect(() => {
     try {
       const initRaw = localStorage.getItem(WATCHED_KEY)
       const init = initRaw ? JSON.parse(initRaw) : []
-      WATCHED_CACHE = Array.isArray(init) ? init : EMPTY_WATCHED
       window.dispatchEvent(new Event(WATCHED_EVENT))
     } catch {}
-    try {
-      const tg = (window as any)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
-      if (tg) setUid(String(tg))
-    } catch {}
+    // uid is initialized lazily above
     try {
       localStorage.setItem("lessons:total", String(lessons.length))
     } catch {}
   }, [])
   function toggleWatched(slug: string) {
     try {
-      const prev = Array.isArray(WATCHED_CACHE) ? WATCHED_CACHE : []
+      const prevRaw = localStorage.getItem(WATCHED_KEY) || "[]"
+      const prevArr = JSON.parse(prevRaw)
+      const prev = Array.isArray(prevArr) ? prevArr.map((s: any) => String(s)) : []
       const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug]
       try {
         localStorage.setItem(WATCHED_KEY, JSON.stringify(next))
-        WATCHED_CACHE = next
       } catch {}
       try {
         window.dispatchEvent(new Event(WATCHED_EVENT))
@@ -287,13 +298,14 @@ export default function LessonsPage() {
                        e.stopPropagation()
                       const slug = slugify(it.title)
                        try {
-                         if (!watched.includes(slug)) {
-                           const prev = Array.isArray(WATCHED_CACHE) ? WATCHED_CACHE : []
-                           const next = [...prev, slug]
-                           localStorage.setItem(WATCHED_KEY, JSON.stringify(next))
-                           WATCHED_CACHE = next
-                           window.dispatchEvent(new Event(WATCHED_EVENT))
-                         }
+                       if (!watched.includes(slug)) {
+                          const prevRaw = localStorage.getItem(WATCHED_KEY) || "[]"
+                          const prevArr = JSON.parse(prevRaw)
+                          const prev = Array.isArray(prevArr) ? prevArr.map((s: any) => String(s)) : []
+                          const next = [...prev, slug]
+                          localStorage.setItem(WATCHED_KEY, JSON.stringify(next))
+                          window.dispatchEvent(new Event(WATCHED_EVENT))
+                        }
                          setBadgeSlug(slug)
                          setTimeout(() => {
                            setBadgeSlug((s) => (s === slug ? null : s))

@@ -40,13 +40,15 @@ function SubscriptionContent() {
       const tg = (window as any)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
       if (!id && tg) id = String(tg)
     } catch {}
-    setUid(id || null)
-    if (n) {
-      setNextChargeAtIso(n)
-      const now = nowMoscow()
-      const next = toMoscow(n)
-      setDaysLeft(calcDays(now, next))
-    }
+    setTimeout(() => {
+      setUid(id || null)
+      if (n) {
+        setNextChargeAtIso(n)
+        const now = nowMoscow()
+        const next = toMoscow(n)
+        setDaysLeft(calcDays(now, next))
+      }
+    }, 0)
   }, [params])
 
   useEffect(() => {
