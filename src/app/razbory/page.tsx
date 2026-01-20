@@ -118,13 +118,7 @@ export default function RazboryPage() {
             }}
           >
             <p>
-              Каждый месяц в клубе проводится рубрика «Индивидуальный разбор от астропсихолога», где вы получаете ответ на свой вопрос по определенной теме.
-            </p>
-            <p style={{ marginTop: "10px" }}>
-              У вас будут сутки, чтобы написать свои данные под постом с&nbsp;разбором.
-            </p>
-            <p style={{ marginTop: "10px" }}>
-              Поэтому поставьте уведомление на канал
+              Проверьте актуальное расписание, чтобы не пропустить возможность получить индивидуальный астроразбор
             </p>
           </div>
         </div>
@@ -139,9 +133,7 @@ export default function RazboryPage() {
         }}
       >
         <Link
-          href="https://t.me/+Fm-0h0ZFMxYwNGJi"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/schedule"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -159,7 +151,7 @@ export default function RazboryPage() {
             textDecoration: "none",
           }}
         >
-          КАНАЛ
+          Расписание
         </Link>
       </div>
       <div

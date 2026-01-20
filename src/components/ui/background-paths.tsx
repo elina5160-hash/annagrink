@@ -704,10 +704,8 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
               </Link>
-              <a
-                href="https://t.me/c/2474417642/559"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/schedule"
                 className="absolute z-20"
                 style={{
                   left: 0,
@@ -715,12 +713,6 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   width: "162px",
                   height: "126px",
                   display: "block",
-                }}
-                onClick={(e) => {
-                  try {
-                    localStorage.setItem("schedule:watched", "1")
-                    window.dispatchEvent(new Event("schedule:watched-change"))
-                  } catch {}
                 }}
               >
                 <div style={{ position: "absolute", left: "0px", top: "0px", width: "100%", height: "100%", pointerEvents: "none", zIndex: 20 }}>
@@ -733,38 +725,6 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   <svg width="7" height="8" viewBox="0 0 7 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ position: "absolute", left: "25px", top: "70px" }}>
                     <path d="M2.51782 6.68706L2.4767 6.67117C3.0227 4.06981 2.94813 3.8924 0.889891 2.90444L0.903393 2.85462C3.05614 3.49385 3.19952 3.40065 4.0375 0.912114L4.07862 0.928004C3.53261 3.52936 3.60719 3.70678 5.66542 4.69474L5.65192 4.74456C3.49917 4.10533 3.35169 4.19694 2.51782 6.68706ZM1.18039 2.98917C2.89178 3.8321 3.02713 4.15407 2.58631 6.33378C3.29854 4.25895 3.5662 4.0927 5.3667 4.60682C3.65531 3.7639 3.51997 3.44192 3.96078 1.26222C3.25267 3.33863 2.98501 3.50488 1.18039 2.98917Z" fill="#F4E4C3" />
                   </svg>
-                </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    right: 8,
-                    top: -12,
-                    zIndex: 30,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 6,
-                    padding: "2px 8px",
-                    borderRadius: 5,
-                    background: "#22926B",
-                    color: "#fff",
-                    fontFamily: "var(--font-family)",
-                    fontWeight: 400,
-                    fontSize: 9,
-                    lineHeight: "130%",
-                    opacity: scheduleWatched ? 1 : 0,
-                    transform: scheduleWatched ? "translateY(0)" : "translateY(-10px)",
-                    transition: "opacity 200ms ease, transform 200ms ease",
-                  }}
-                >
-                  <div style={{ display: "inline-flex", alignItems: "center", gap: 2 }}>
-                    <svg width="10" height="10" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1.5 4.5 L4.5 7.5 L10.5 1.5" stroke="#D9D9D9" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <svg width="10" height="10" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1.5 4.5 L4.5 7.5 L10.5 1.5" stroke="#D9D9D9" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <span style={{ marginLeft: 4 }}>Просмотрено</span>
                 </div>
                 <div
                   className="font-libertinus"
@@ -810,9 +770,11 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     opacity: 0.7,
                   }}
                 />
-              </a>
-              <Link
-                href="/club"
+              </Link>
+              <a
+                href="https://t.me/+Fm-0h0ZFMxYwNGJi"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="absolute z-20"
                 style={{
                   left: "181px",
@@ -874,7 +836,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   </span>
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
-              </Link>
+              </a>
               <Link
                 href="/lessons"
                 className="absolute z-20"

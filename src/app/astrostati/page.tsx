@@ -54,18 +54,18 @@ export default function AstrostatyiPage() {
   }, [])
   const LINK_URL = "https://t.me/c/2474417642/542"
   const INITIAL_LINK_PAIRS: Array<{ title: string; url: string }> = [
-    { title: "От кого зависит ваш социальный статус и успех?", url: LINK_URL },
-    { title: "Голубая кровь в роду", url: LINK_URL },
-    { title: "Семья или карьера", url: LINK_URL },
-    { title: "Родовые сценарии в личной жизни", url: LINK_URL },
-    { title: "Идеальный мужчина или абъюзер?", url: LINK_URL },
-    { title: "Что будет, если не выполнять предназначение", url: LINK_URL },
-    { title: "Фундамент вашей жизни", url: LINK_URL },
-    { title: "Сфера твоего везения", url: LINK_URL },
-    { title: "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?", url: LINK_URL },
-    { title: "Почему вы годами не можете встретить партнёра", url: LINK_URL },
-    { title: "Указания в натальной карте на богатого партнёра", url: LINK_URL },
-    { title: "Плутон: долги или богатство", url: LINK_URL },
+    { title: "От кого зависит ваш социальный статус и успех?", url: "https://drive.google.com/file/d/1X6x_O0Z7vK_uG-D2d5u8tyoJb_q2y3rF/view?usp=sharing" },
+    { title: "Голубая кровь в роду", url: "https://drive.google.com/file/d/1trj-q3FFOA_3lelo36goxB379snv4R0e/view?usp=sharing" },
+    { title: "Семья или карьера", url: "https://drive.google.com/file/d/1PElEdzwkpg3PRcCNt1HJw42uvbXPZ3VQ/view?usp=sharing" },
+    { title: "Родовые сценарии в личной жизни", url: "https://disk.yandex.ru/d/VsYSRdgYkN5f7g" },
+    { title: "Идеальный мужчина или абъюзер?", url: "https://disk.yandex.ru/d/hU430VCKbqTdvw" },
+    { title: "Что будет, если не выполнять предназначение", url: "https://drive.google.com/file/d/1i_yXj_s_w_k_2_0_2_4/view?usp=sharing" },
+    { title: "Фундамент вашей жизни", url: "https://drive.google.com/file/d/13C9CESsoCs4OMgNoUu2J9L37-KHPZPlK/view?usp=sharing" },
+    { title: "Сфера твоего везения", url: "https://drive.google.com/file/d/1-GvJf_DlQa0OTfWIomNdDtPzIr4ngRdC/view?usp=sharing" },
+    { title: "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?", url: "https://drive.google.com/file/d/1E7m1kcO_-c32iOmFoy8CLPrw56vUwbC4/view?usp=sharing" },
+    { title: "Почему вы годами не можете встретить партнёра", url: "https://drive.google.com/file/d/1n7jHWfZ-uEAO04Bms73ObjssH69F2Eip/view?usp=sharing" },
+    { title: "Указания в натальной карте на богатого партнёра", url: "https://drive.google.com/file/d/1A9Q4Db9Z856NI3wYyQX8DmGGEE442RSs/view?usp=sharing" },
+    { title: "Плутон: долги или богатство", url: "https://drive.google.com/file/d/1zdhqtUKNMt8D3Lu6XD65bzZVCvtOy5V1/view?usp=sharing" },
   ]
   function slugify(s: string) {
     return s
@@ -107,7 +107,7 @@ export default function AstrostatyiPage() {
       const next = { ...prev }
       INITIAL_LINK_PAIRS.forEach(({ title, url }) => {
         const key = slugify(title)
-        if (!next[key]) next[key] = url
+        next[key] = url
       })
       const prevStr = JSON.stringify(prev)
       const nextStr = JSON.stringify(next)

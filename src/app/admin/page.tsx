@@ -2,6 +2,78 @@
 import Link from "next/link"
 import { useEffect, useMemo, useState } from "react"
 
+const PODCAST_TOPICS = [
+  "Почему опасно объединять рода и бездумно делать детей",
+  "Живые/мёртвые энергии в натальной карте",
+  "Бесхребетные женщины",
+  "Личные границы",
+  "Как перестать выбирать жестоких мужчин?",
+  "Уровни дохода",
+  "Подкаст с Косенко",
+  "Про богатых мужчин",
+  "Моя философия жизни",
+  "Как найти идеального мужчину?",
+  "Секреты больших денег",
+  "Релокация",
+  "Как не выбрасывать деньги на обучения?",
+  "Как уйти из найма?",
+  "Как общаться с мужем, чтобы вас слышали?",
+  "Беременность, дети",
+  "Как научиться работать за деньги",
+  "Как я научилась быть слабой",
+  "Как справиться с критикой?",
+  "Про обучение",
+  "Любовь или деньги?",
+  "Труп моего бизнеса",
+  "Как сливают продажи и клиентов?",
+  "Почему вы НЕ зарабатываете много",
+  "Как не разрушать жизнь на эмоциях",
+  "Почему я ушла от мужа",
+  "Про патриархальное общество",
+  "Легко ли тебе идти в новое?",
+  "Синдром отложенной жизни",
+  "Новое название и миссия клуба",
+  "Как быть неидеальными?",
+  "Делюсь своей болью",
+  "Осложнения после установки виниров",
+]
+
+const CUSTOM_PODCAST_URLS: Record<string, string> = {
+  "Почему опасно объединять рода и бездумно делать детей": "https://t.me/c/2474417642/120",
+  "Живые/мёртвые энергии в натальной карте": "https://t.me/c/2474417642/134",
+  "Бесхребетные женщины": "https://t.me/c/2474417642/150",
+  "Личные границы": "https://t.me/c/2474417642/150",
+  "Как перестать выбирать жестоких мужчин?": "https://t.me/c/2474417642/163",
+  "Уровни дохода": "https://t.me/c/2474417642/163",
+  "Подкаст с Косенко": "https://t.me/c/2474417642/178",
+  "Про богатых мужчин": "https://t.me/c/2474417642/223",
+  "Моя философия жизни": "https://t.me/c/2474417642/315",
+  "Как найти идеального мужчину?": "https://t.me/c/2474417642/328",
+  "Секреты больших денег": "https://t.me/c/2474417642/336",
+  "Релокация": "https://t.me/c/2474417642/342",
+  "Как не выбрасывать деньги на обучения?": "https://t.me/c/2474417642/354",
+  "Как уйти из найма?": "https://t.me/c/2474417642/355",
+  "Как общаться с мужем, чтобы вас слышали?": "https://t.me/c/2474417642/359",
+  "Беременность, дети": "https://t.me/c/2474417642/362",
+  "Как научиться работать за деньги": "https://t.me/c/2474417642/364",
+  "Как я научилась быть слабой": "https://t.me/c/2474417642/381",
+  "Как справиться с критикой?": "https://t.me/c/2474417642/393",
+  "Про обучение": "https://t.me/c/2474417642/417",
+  "Любовь или деньги?": "https://t.me/c/2474417642/434",
+  "Труп моего бизнеса": "https://t.me/c/2474417642/450",
+  "Как сливают продажи и клиентов?": "https://t.me/c/2474417642/456",
+  "Почему вы НЕ зарабатываете много": "https://t.me/c/2474417642/474",
+  "Как не разрушать жизнь на эмоциях": "https://t.me/c/2474417642/477",
+  "Почему я ушла от мужа": "https://t.me/c/2474417642/501",
+  "Про патриархальное общество": "https://t.me/c/2474417642/509",
+  "Легко ли тебе идти в новое?": "https://t.me/c/2474417642/531",
+  "Синдром отложенной жизни": "https://t.me/c/2474417642/543",
+  "Новое название и миссия клуба": "https://t.me/c/2474417642/545",
+  "Как быть неидеальными?": "https://t.me/c/2474417642/551",
+  "Делюсь своей болью": "https://t.me/c/2474417642/554",
+  "Осложнения после установки виниров": "https://t.me/c/2474417642/573",
+}
+
 type Item = { id: string; slug: string; title: string; url?: string }
 type Attachment = { id: string; lesson_id: string; type: "podcast" | "article" | "analysis"; title?: string; url?: string; content_id?: string; content_slug?: string }
 
@@ -127,38 +199,9 @@ export default function AdminPanelPage() {
               return { id: slug, slug, title, url }
             })
           } else {
-            const LINK = "https://t.me/c/2474417642/542"
-            const topics = [
-              "Почему опасно объединять рода и бездумно делать детей",
-              "Живые/мёртвые энергии в натальной карте",
-              "Бесхребетные женщины",
-              "Личные границы",
-              "Как перестать выбирать жестоких мужчин?",
-              "Уровни дохода",
-              "Подкаст с Косенко",
-              "Про богатых мужчин",
-              "Моя философия жизни",
-              "Как найти идеального мужчину?",
-              "Секреты больших денег",
-              "Релокация",
-              "Как не выбрасывать деньги на обучения?",
-              "Как уйти из найма?",
-              "Как общаться с мужем, чтобы вас слышали?",
-              "Беременность, дети",
-              "Как научиться работать за деньги",
-              "Как я научилась быть слабой",
-              "Как справиться с критикой?",
-              "Про обучение",
-              "Любовь или деньги?",
-              "Труп моего бизнеса",
-              "Как сливают продажи и клиентов?",
-              "Почему вы НЕ зарабатываете много",
-              "Как не разрушать жизнь на эмоциях",
-              "Почему я ушла от мужа",
-            ]
-            itemsLocal = topics.map((t) => {
+            itemsLocal = PODCAST_TOPICS.map((t) => {
               const slug = slugifyLocal(t)
-              return { id: slug, slug, title: t, url: LINK }
+              return { id: slug, slug, title: t, url: CUSTOM_PODCAST_URLS[t] || "https://t.me/c/2474417642/542" }
             })
           }
           setItems(itemsLocal)
@@ -178,21 +221,23 @@ export default function AdminPanelPage() {
             })
           } else {
             const LINK = "https://t.me/c/2474417642/542"
-            const fallback = [
-              "От кого зависит ваш социальный статус и успех?",
-              "Голубая кровь в роду",
-              "Семья или карьера",
-              "Родовые сценарии в личной жизни",
-              "Идеальный мужчина или абъюзер?",
-              "Что будет, если не выполнять предназначение",
-              "Фундамент вашей жизни",
-              "Сфера твоего везения",
-              "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?",
-              "Почему вы годами не можете встретить партнёра",
+            const fallback: Array<{ title: string; url: string }> = [
+              { title: "От кого зависит ваш социальный статус и успех?", url: "https://drive.google.com/file/d/1X6x_O0Z7vK_uG-D2d5u8tyoJb_q2y3rF/view?usp=sharing" },
+              { title: "Голубая кровь в роду", url: "https://drive.google.com/file/d/1trj-q3FFOA_3lelo36goxB379snv4R0e/view?usp=sharing" },
+              { title: "Семья или карьера", url: "https://drive.google.com/file/d/1PElEdzwkpg3PRcCNt1HJw42uvbXPZ3VQ/view?usp=sharing" },
+              { title: "Родовые сценарии в личной жизни", url: "https://disk.yandex.ru/d/VsYSRdgYkN5f7g" },
+              { title: "Идеальный мужчина или абъюзер?", url: "https://disk.yandex.ru/d/hU430VCKbqTdvw" },
+              { title: "Что будет, если не выполнять предназначение", url: "https://drive.google.com/file/d/1i_yXj_s_w_k_2_0_2_4/view?usp=sharing" },
+              { title: "Фундамент вашей жизни", url: "https://drive.google.com/file/d/13C9CESsoCs4OMgNoUu2J9L37-KHPZPlK/view?usp=sharing" },
+              { title: "Сфера твоего везения", url: "https://drive.google.com/file/d/1-GvJf_DlQa0OTfWIomNdDtPzIr4ngRdC/view?usp=sharing" },
+              { title: "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?", url: "https://drive.google.com/file/d/1E7m1kcO_-c32iOmFoy8CLPrw56vUwbC4/view?usp=sharing" },
+              { title: "Почему вы годами не можете встретить партнёра", url: "https://drive.google.com/file/d/1n7jHWfZ-uEAO04Bms73ObjssH69F2Eip/view?usp=sharing" },
+              { title: "Указания в натальной карте на богатого партнёра", url: "https://drive.google.com/file/d/1A9Q4Db9Z856NI3wYyQX8DmGGEE442RSs/view?usp=sharing" },
+              { title: "Плутон: долги или богатство", url: "https://drive.google.com/file/d/1zdhqtUKNMt8D3Lu6XD65bzZVCvtOy5V1/view?usp=sharing" },
             ]
-            itemsLocal = fallback.map((t) => {
-              const slug = slugifyLocal(t)
-              return { id: slug, slug, title: t, url: LINK }
+            itemsLocal = fallback.map((item) => {
+              const slug = slugifyLocal(item.title)
+              return { id: slug, slug, title: item.title, url: item.url }
             })
           }
           setItems(itemsLocal)
@@ -297,36 +342,7 @@ export default function AdminPanelPage() {
           if (Array.isArray(arr)) items = arr.map((it: any) => ({ title: String(it?.title || ""), url: String(it?.url || "") })).filter((it) => it.title)
         } catch {}
         if (!items.length) {
-          const LINK = "https://t.me/c/2474417642/542"
-          const topics = [
-            "Почему опасно объединять рода и бездумно делать детей",
-            "Живые/мёртвые энергии в натальной карте",
-            "Бесхребетные женщины",
-            "Личные границы",
-            "Как перестать выбирать жестоких мужчин?",
-            "Уровни дохода",
-            "Подкаст с Косенко",
-            "Про богатых мужчин",
-            "Моя философия жизни",
-            "Как найти идеального мужчину?",
-            "Секреты больших денег",
-            "Релокация",
-            "Как не выбрасывать деньги на обучения?",
-            "Как уйти из найма?",
-            "Как общаться с мужем, чтобы вас слышали?",
-            "Беременность, дети",
-            "Как научиться работать за деньги",
-            "Как я научилась быть слабой",
-            "Как справиться с критикой?",
-            "Про обучение",
-            "Любовь или деньги?",
-            "Труп моего бизнеса",
-            "Как сливают продажи и клиентов?",
-            "Почему вы НЕ зарабатываете много",
-            "Как не разрушать жизнь на эмоциях",
-            "Почему я ушла от мужа",
-          ]
-          items = topics.map((t) => ({ title: t, url: LINK }))
+          items = PODCAST_TOPICS.map((t) => ({ title: t, url: CUSTOM_PODCAST_URLS[t] || "https://t.me/c/2474417642/542" }))
         }
         for (const it of items) await makeReq({ title: it.title, url: it.url }, "/api/admin/podcasts")
         await fetch("/api/admin/log", { method: "POST", headers: apiHeaders(key), body: JSON.stringify({ action: "seed:podcasts", details: { count: items.length } }) })
@@ -351,16 +367,18 @@ export default function AdminPanelPage() {
         if (!items.length) {
           const LINK = "https://t.me/c/2474417642/542"
           items = [
-            { title: "От кого зависит ваш социальный статус и успех?", url: LINK },
-            { title: "Голубая кровь в роду", url: LINK },
-            { title: "Семья или карьера", url: LINK },
-            { title: "Родовые сценарии в личной жизни", url: LINK },
-            { title: "Идеальный мужчина или абъюзер?", url: LINK },
-            { title: "Что будет, если не выполнять предназначение", url: LINK },
-            { title: "Фундамент вашей жизни", url: LINK },
-            { title: "Сфера твоего везения", url: LINK },
-            { title: "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?", url: LINK },
-            { title: "Почему вы годами не можете встретить партнёра", url: LINK },
+            { title: "От кого зависит ваш социальный статус и успех?", url: "https://drive.google.com/file/d/1X6x_O0Z7vK_uG-D2d5u8tyoJb_q2y3rF/view?usp=sharing" },
+            { title: "Голубая кровь в роду", url: "https://drive.google.com/file/d/1trj-q3FFOA_3lelo36goxB379snv4R0e/view?usp=sharing" },
+            { title: "Семья или карьера", url: "https://drive.google.com/file/d/1PElEdzwkpg3PRcCNt1HJw42uvbXPZ3VQ/view?usp=sharing" },
+            { title: "Родовые сценарии в личной жизни", url: "https://disk.yandex.ru/d/VsYSRdgYkN5f7g" },
+            { title: "Идеальный мужчина или абъюзер?", url: "https://disk.yandex.ru/d/hU430VCKbqTdvw" },
+            { title: "Что будет, если не выполнять предназначение", url: "https://drive.google.com/file/d/1i_yXj_s_w_k_2_0_2_4/view?usp=sharing" },
+            { title: "Фундамент вашей жизни", url: "https://drive.google.com/file/d/13C9CESsoCs4OMgNoUu2J9L37-KHPZPlK/view?usp=sharing" },
+            { title: "Сфера твоего везения", url: "https://drive.google.com/file/d/1-GvJf_DlQa0OTfWIomNdDtPzIr4ngRdC/view?usp=sharing" },
+            { title: "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?", url: "https://drive.google.com/file/d/1E7m1kcO_-c32iOmFoy8CLPrw56vUwbC4/view?usp=sharing" },
+            { title: "Почему вы годами не можете встретить партнёра", url: "https://drive.google.com/file/d/1n7jHWfZ-uEAO04Bms73ObjssH69F2Eip/view?usp=sharing" },
+            { title: "Указания в натальной карте на богатого партнёра", url: "https://drive.google.com/file/d/1A9Q4Db9Z856NI3wYyQX8DmGGEE442RSs/view?usp=sharing" },
+            { title: "Плутон: долги или богатство", url: "https://drive.google.com/file/d/1zdhqtUKNMt8D3Lu6XD65bzZVCvtOy5V1/view?usp=sharing" },
           ]
         }
         for (const it of items) await makeReq({ title: it.title, url: it.url }, "/api/admin/articles")
