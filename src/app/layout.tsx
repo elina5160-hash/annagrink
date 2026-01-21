@@ -13,6 +13,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
+import { VideoBackground } from "../components/ui/video-background"
+
 export const metadata: Metadata = {
   title: "annagrink",
   description: "Институт астрологии и психологии",
@@ -30,7 +32,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased app-stars min-h-screen`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen relative bg-transparent text-foreground`}>
+        <VideoBackground />
         {children}
       </body>
     </html>
