@@ -242,7 +242,7 @@ export default function ClubPage() {
                           </div>
                           <div style={{ display: "flex", justifyContent: "flex-start" }}>
                             <Link
-                              href="https://t.me/Astro_Academy_Support"
+                              href="https://t.me/anna_grinkovaa"
                               target="_blank"
                               style={{
                                 display: "inline-flex",
