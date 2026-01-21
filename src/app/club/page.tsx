@@ -241,10 +241,8 @@ export default function ClubPage() {
                             Чтобы забрать обучение по клубному тарифу ⬇️ напишите на аккаунт по кнопке ниже и скажите, что вы из клуба
                           </div>
                           <div style={{ display: "flex", justifyContent: "flex-start" }}>
-                            <a
-                              href="https://t.me/anna_grinkovaa"
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Link
+                              href="/support"
                               style={{
                                 display: "inline-flex",
                                 alignItems: "center",
@@ -265,7 +263,7 @@ export default function ClubPage() {
                               }}
                             >
                               КЛУБНЫЙ ТАРИФ
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       )}

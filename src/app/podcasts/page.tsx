@@ -59,29 +59,29 @@ const CUSTOM_URLS: Record<string, string> = {
   "Почему опасно объединять рода и бездумно делать детей": "https://t.me/c/2474417642/120",
   "Живые/мёртвые энергии в натальной карте": "https://t.me/c/2474417642/134",
   "Бесхребетные женщины": "https://t.me/c/2474417642/150",
-  "Личные границы": "https://t.me/c/2474417642/150",
+  "Личные границы": "https://t.me/c/2474417642/163",
   "Как перестать выбирать жестоких мужчин?": "https://t.me/c/2474417642/163",
-  "Уровни дохода": "https://t.me/c/2474417642/163",
-  "Подкаст с Косенко": "https://t.me/c/2474417642/178",
-  "Про богатых мужчин": "https://t.me/c/2474417642/223",
-  "Моя философия жизни": "https://t.me/c/2474417642/315",
-  "Как найти идеального мужчину?": "https://t.me/c/2474417642/328",
-  "Секреты больших денег": "https://t.me/c/2474417642/336",
-  "Релокация": "https://t.me/c/2474417642/342",
-  "Как не выбрасывать деньги на обучения?": "https://t.me/c/2474417642/354",
-  "Как уйти из найма?": "https://t.me/c/2474417642/355",
-  "Как общаться с мужем, чтобы вас слышали?": "https://t.me/c/2474417642/359",
-  "Беременность, дети": "https://t.me/c/2474417642/362",
-  "Как научиться работать за деньги": "https://t.me/c/2474417642/364",
-  "Как я научилась быть слабой": "https://t.me/c/2474417642/381",
-  "Как справиться с критикой?": "https://t.me/c/2474417642/393",
-  "Про обучение": "https://t.me/c/2474417642/417",
-  "Любовь или деньги?": "https://t.me/c/2474417642/434",
-  "Труп моего бизнеса": "https://t.me/c/2474417642/450",
-  "Как сливают продажи и клиентов?": "https://t.me/c/2474417642/456",
-  "Почему вы НЕ зарабатываете много": "https://t.me/c/2474417642/474",
-  "Как не разрушать жизнь на эмоциях": "https://t.me/c/2474417642/477",
-  "Почему я ушла от мужа": "https://t.me/c/2474417642/501",
+  "Уровни дохода": "https://t.me/c/2474417642/178",
+  "Подкаст с Косенко": "https://t.me/c/2474417642/223",
+  "Про богатых мужчин": "https://t.me/c/2474417642/315",
+  "Моя философия жизни": "https://t.me/c/2474417642/328",
+  "Как найти идеального мужчину?": "https://t.me/c/2474417642/336",
+  "Секреты больших денег": "https://t.me/c/2474417642/342",
+  "Релокация": "https://t.me/c/2474417642/354",
+  "Как не выбрасывать деньги на обучения?": "https://t.me/c/2474417642/355",
+  "Как уйти из найма?": "https://t.me/c/2474417642/359",
+  "Как общаться с мужем, чтобы вас слышали?": "https://t.me/c/2474417642/362",
+  "Беременность, дети": "https://t.me/c/2474417642/364",
+  "Как научиться работать за деньги": "https://t.me/c/2474417642/381",
+  "Как я научилась быть слабой": "https://t.me/c/2474417642/393",
+  "Как справиться с критикой?": "https://t.me/c/2474417642/417",
+  "Про обучение": "https://t.me/c/2474417642/434",
+  "Любовь или деньги?": "https://t.me/c/2474417642/450",
+  "Труп моего бизнеса": "https://t.me/c/2474417642/456",
+  "Как сливают продажи и клиентов?": "https://t.me/c/2474417642/474",
+  "Почему вы НЕ зарабатываете много": "https://t.me/c/2474417642/477",
+  "Как не разрушать жизнь на эмоциях": "https://t.me/c/2474417642/501",
+  "Почему я ушла от мужа": "https://t.me/c/2474417642/503",
   "Про патриархальное общество": "https://t.me/c/2474417642/509",
   "Легко ли тебе идти в новое?": "https://t.me/c/2474417642/531",
   "Синдром отложенной жизни": "https://t.me/c/2474417642/543",
@@ -96,7 +96,7 @@ const INITIAL_PODCAST_ITEMS: Item[] = topics.map((t) => ({ title: t, url: CUSTOM
 const defaultMaterialsBySlug: Record<string, string> = Object.fromEntries(
   topics.map((t) => {
     const s = slugify(t)
-    return [s, `https://example.com/materials/${encodeURIComponent(s)}`]
+    return [s, CUSTOM_URLS[t] || POD_LINK_URL]
   })
 )
 
@@ -182,9 +182,11 @@ export default function PodcastsPage() {
       const next: Item[] = topics.map((t) => {
         const s = slugify(t)
         const existing = prevMap[s]
-        const url = POD_LINK_URL
-        if (CUSTOM_URLS[t]) return { title: t, url: CUSTOM_URLS[t] }
-        return existing ? { title: t, url: existing.url || url } : { title: t, url }
+        const targetUrl = CUSTOM_URLS[t] || POD_LINK_URL
+        const currentUrl = existing ? existing.url : undefined
+        // Force update to fix shifted links issue (ignoring previous user edits for now)
+        const urlToUse = targetUrl
+        return { title: t, url: urlToUse }
       })
       const same = Array.isArray(prev) && prev.length === next.length && prev.every((v, i) => v.title === next[i].title && v.url === next[i].url)
       if (!same) {
@@ -431,16 +433,22 @@ export default function PodcastsPage() {
                       } catch {}
                     }}
                   >
-                    <path d="M1.5 4.5 L4.5 7.5 L10.5 1.5" stroke="#D9D9D9" strokeWidth={1.25} strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M10.875 1.875L4.125 8.625L1.125 5.625"
+                      stroke={watched.includes(slugify(t)) ? "#22926B" : "#D9D9D9"}
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="11" fill="#D9D9D9" />
-                    <circle cx="12" cy="12" r="11" fill="url(#paint0_linear_43_138)" />
+                    <circle cx="12" cy="12" r="11" fill="url(#paint0_linear_play)" />
                     <svg x="8.5" y="7.5" width="7" height="9" viewBox="0 0 7 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M7.00964 4.047L0 8.09402V0L7.00964 4.047Z" fill="#0d1819" />
                     </svg>
                     <defs>
-                      <linearGradient id="paint0_linear_43_138" x1="0" y1="12" x2="24" y2="12" gradientUnits="userSpaceOnUse">
+                      <linearGradient id="paint0_linear_play" x1="0" y1="12" x2="24" y2="12" gradientUnits="userSpaceOnUse">
                         <stop stopColor="#F4D990" />
                         <stop offset="1" stopColor="#CB9B3D" />
                       </linearGradient>
@@ -451,10 +459,8 @@ export default function PodcastsPage() {
             </li>
           ))}
         </ul>
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "40px", paddingBottom: "75px" }}>
-          <img src="/плашкаснизу.png" alt="" style={{ width: "107px", height: "21px", objectFit: "contain" }} />
-        </div>
       </div>
+      <div style={{ height: "80px" }} />
       <BottomBar />
     </div>
   )

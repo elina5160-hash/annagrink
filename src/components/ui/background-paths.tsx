@@ -21,51 +21,13 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
   const isHome = title === "ДОМОЙ";
   const isSupport = title === "ПОДДЕРЖКА";
   const isClub = title === "О КЛУБЕ";
-  const [hiddenBanners, setHiddenBanners] = useState<string[]>(() => {
-    try {
-      const hb = JSON.parse(typeof window !== "undefined" ? (localStorage.getItem("home:banners:hidden") || "[]") : "[]")
-      return Array.isArray(hb) ? hb : []
-    } catch {
-      return []
-    }
-  })
-  const [homeCategories, setHomeCategories] = useState<Array<{ title: string; iconSrc?: string; href?: string }>>(() => {
-    try {
-      const hc = JSON.parse(typeof window !== "undefined" ? (localStorage.getItem("home:categories") || "[]") : "[]")
-      return Array.isArray(hc) ? hc : []
-    } catch {
-      return []
-    }
-  })
+  const [hiddenBanners, setHiddenBanners] = useState<string[]>([])
+  const [homeCategories, setHomeCategories] = useState<Array<{ title: string; iconSrc?: string; href?: string }>>([])
   const [openAudience, setOpenAudience] = useState(false)
   const [openInside, setOpenInside] = useState(false)
   const [openTariff, setOpenTariff] = useState(false)
   const [podcastsWatched, setPodcastsWatched] = useState<string[]>([])
   const [astrostatiWatched, setAstrostatiWatched] = useState<string[]>([])
-  const [scheduleWatched, setScheduleWatched] = useState<boolean>(() => {
-    try {
-      return typeof window !== "undefined" ? localStorage.getItem("schedule:watched") === "1" : false
-    } catch {
-      return false
-    }
-  })
-  const [lessonsWatched, setLessonsWatched] = useState<string[]>([])
-  const [lessonsTotal, setLessonsTotal] = useState<number>(() => {
-    try {
-      const lt = parseInt(typeof window !== "undefined" ? (localStorage.getItem("lessons:total") || "0") : "0", 10)
-      return !isNaN(lt) && lt > 0 ? lt : 0
-    } catch {
-      return 0
-    }
-  })
-  const [uid, setUid] = useState<string | null>(() => {
-    try {
-      const tg = (typeof window !== "undefined" ? (window as any) : undefined)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
-      return tg ? String(tg) : null
-    } catch {
-      return null
-    }
-  })
   const [podcastsTotal, setPodcastsTotal] = useState<number>(0)
   const [astrostatiTotal, setAstrostatiTotal] = useState<number>(0)
   useEffect(() => {
@@ -103,6 +65,14 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
     }
   }, [isHome])
   useEffect(() => {
+    try {
+      const hb = JSON.parse(localStorage.getItem("home:banners:hidden") || "[]")
+      if (Array.isArray(hb)) setHiddenBanners(hb)
+    } catch {}
+    try {
+      const hc = JSON.parse(localStorage.getItem("home:categories") || "[]")
+      if (Array.isArray(hc)) setHomeCategories(hc)
+    } catch {}
     const onBanners = () => {
       try {
         const hb = JSON.parse(localStorage.getItem("home:banners:hidden") || "[]")
@@ -126,48 +96,13 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
       } catch {}
     }
   }, [])
-  useEffect(() => {
-    const onSchedule = () => {
-      try {
-        const s = localStorage.getItem("schedule:watched") === "1"
-        setScheduleWatched(!!s)
-      } catch {}
-    }
-    try {
-      window.addEventListener("schedule:watched-change", onSchedule as EventListener)
-    } catch {}
-    return () => {
-      try {
-        window.removeEventListener("schedule:watched-change", onSchedule as EventListener)
-      } catch {}
-    }
-  }, [])
-  useEffect(() => {
-    // no-op: initial values are read in state initializers; keep effect for future expansions if needed
-  }, [])
-  useEffect(() => {
-    if (!uid) return
-    fetch(`/api/progress/lessons?uid=${encodeURIComponent(uid)}`, { cache: "no-store" })
-      .then((r) => r.json())
-      .then((j) => {
-        if (Array.isArray(j?.watched)) setLessonsWatched(j.watched.map((s: any) => String(s)))
-      })
-      .catch(() => {})
-    try {
-      fetch(`/api/subscription/track`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: uid, source: "home" }),
-      }).catch(() => {})
-    } catch {}
-  }, [uid])
   const percent = useMemo(() => {
-    const totalWatched = podcastsWatched.length + astrostatiWatched.length + lessonsWatched.length
-    const totalItems = podcastsTotal + astrostatiTotal + lessonsTotal
+    const totalWatched = podcastsWatched.length + astrostatiWatched.length
+    const totalItems = podcastsTotal + astrostatiTotal
     if (!totalItems) return 0
     const p = Math.min(100, Math.max(0, Math.round((totalWatched / totalItems) * 100)))
     return p
-  }, [podcastsWatched, astrostatiWatched, lessonsWatched, podcastsTotal, astrostatiTotal, lessonsTotal])
+  }, [podcastsWatched, astrostatiWatched, podcastsTotal, astrostatiTotal])
 
   const getRankMessage = (p: number) => {
     let rank = "ТОП-100";
@@ -613,7 +548,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "14px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -677,7 +612,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "14px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -704,8 +639,10 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
               </Link>
-              <Link
-                href="/schedule"
+              <a
+                href="https://t.me/c/2474417642/542"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="absolute z-20"
                 style={{
                   left: 0,
@@ -730,7 +667,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "14px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -770,11 +707,9 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     opacity: 0.7,
                   }}
                 />
-              </Link>
-              <a
-                href="https://t.me/+Fm-0h0ZFMxYwNGJi"
-                target="_blank"
-                rel="noopener noreferrer"
+              </a>
+              <Link
+                href="/club"
                 className="absolute z-20"
                 style={{
                   left: "181px",
@@ -810,7 +745,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "14px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -836,7 +771,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   </span>
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
-              </a>
+              </Link>
               <Link
                 href="/lessons"
                 className="absolute z-20"
@@ -871,7 +806,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "14px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -938,7 +873,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   className="font-libertinus"
                   style={{
                     position: "absolute",
-                    left: "14px",
+                    left: "19px",
                     bottom: "18px",
                     fontWeight: 400,
                     fontSize: "17px",
@@ -1255,9 +1190,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
           )}
         </motion.div>
         <div className="relative max-w-[358px] mx-auto" style={{ marginTop: "13px" }}>
-          <a href="https://t.me/anna_grinkovaa" target="_blank" rel="noopener noreferrer">
-            <img src="/плашкадл.png" alt="" style={{ width: "100%", height: "auto", display: "block" }} />
-          </a>
+          <img src="/плашкадл.png" alt="" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
         {isHome && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "13px" }}>

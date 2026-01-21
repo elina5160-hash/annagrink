@@ -26,11 +26,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="ru">
       <head>
         <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased app-stars min-h-screen`} suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased app-stars min-h-screen`}>
         {children}
       </body>
     </html>

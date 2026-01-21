@@ -40,15 +40,13 @@ function SubscriptionContent() {
       const tg = (window as any)?.Telegram?.WebApp?.initDataUnsafe?.user?.id
       if (!id && tg) id = String(tg)
     } catch {}
-    setTimeout(() => {
-      setUid(id || null)
-      if (n) {
-        setNextChargeAtIso(n)
-        const now = nowMoscow()
-        const next = toMoscow(n)
-        setDaysLeft(calcDays(now, next))
-      }
-    }, 0)
+    setUid(id || null)
+    if (n) {
+      setNextChargeAtIso(n)
+      const now = nowMoscow()
+      const next = toMoscow(n)
+      setDaysLeft(calcDays(now, next))
+    }
   }, [params])
 
   useEffect(() => {
@@ -175,9 +173,7 @@ function SubscriptionContent() {
             </div>
             <div style={{ display: "flex", justifyContent: "flex-start" }}>
               <a
-                href="https://t.me/AnnaGrinkovaClub_bot?start=Otmena"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",

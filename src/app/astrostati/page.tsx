@@ -1,13 +1,19 @@
 "use client"
 import Link from "next/link"
 import { BottomBar } from "../../components/ui/bottom-bar"
-import { useState, useSyncExternalStore, useEffect, useMemo } from "react"
+import { useState, useSyncExternalStore, useEffect } from "react"
 
 const ASTRO_WATCHED_EVENT = "astrostati:watched-change"
 const ASTRO_WATCHED_KEY = "astrostati:watched"
 const ASTRO_EMPTY_WATCHED: string[] = []
+let ASTRO_WATCHED_CACHE: string[] = ASTRO_EMPTY_WATCHED
 function astroSubscribeWatched(cb: () => void) {
   const handler = () => {
+    try {
+      const w = JSON.parse(localStorage.getItem(ASTRO_WATCHED_KEY) || "[]")
+      if (Array.isArray(w)) ASTRO_WATCHED_CACHE = w
+      else ASTRO_WATCHED_CACHE = ASTRO_EMPTY_WATCHED
+    } catch {}
     cb()
   }
   if (typeof window !== "undefined") window.addEventListener(ASTRO_WATCHED_EVENT, handler as EventListener)
@@ -30,20 +36,18 @@ export default function AstrostatyiPage() {
     "Почему вы годами не можете встретить партнёра: указания в карте",
     "Указания в натальной карте на богатого партнёра",
     "Плутон: долги или богатство. Как научиться управлять этой планетой для роста в деньгах?",
-    "денежный маникюр на весь предстоящий год",
+    "Денежный маникюр на весь предстоящий год",
     "Какие желания загадывать в новогоднюю ночь, чтобы они сбылись по вашей карте?",
     "Календарь на январь и февраль 2026",
     "Какую аскезу нужно взять, чтобы вырос доход?",
   ]
-  const [topics, setTopics] = useState<string[]>(() => {
-    try {
-      const raw = typeof window !== "undefined" ? localStorage.getItem("astrostati:topics") : null
-      const arr = raw ? JSON.parse(raw) : []
-      if (Array.isArray(arr) && arr.length) return arr.map((s: any) => String(s))
-    } catch {}
-    return defaultTopics
-  })
+  const [topics, setTopics] = useState<string[]>(defaultTopics)
   useEffect(() => {
+    try {
+      const raw = localStorage.getItem("astrostati:topics")
+      const arr = raw ? JSON.parse(raw) : []
+      if (Array.isArray(arr) && arr.length) setTopics(arr.map((s: any) => String(s)))
+    } catch {}
     const handler = () => {
       try {
         const raw = localStorage.getItem("astrostati:topics")
@@ -70,7 +74,7 @@ export default function AstrostatyiPage() {
     { title: "Почему вы годами не можете встретить партнёра: указания в карте", url: "https://drive.google.com/file/d/1n7jHWfZ-uEAO04Bms73ObjssH69F2Eip/view?usp=sharing" },
     { title: "Указания в натальной карте на богатого партнёра", url: "https://drive.google.com/file/d/1E7m1kcO_-c32iOmFoy8CLPrw56vUwbC4/view?usp=sharing" },
     { title: "Плутон: долги или богатство. Как научиться управлять этой планетой для роста в деньгах?", url: "https://drive.google.com/file/d/1-GvJf_DlQa0OTfWIomNdDtPzIr4ngRdC/view?usp=sharing" },
-    { title: "денежный маникюр на весь предстоящий год", url: "https://disk.yandex.ru/i/O5sIdmptkZoeeg" },
+    { title: "Денежный маникюр на весь предстоящий год", url: "https://disk.yandex.ru/i/O5sIdmptkZoeeg" },
     { title: "Какие желания загадывать в новогоднюю ночь, чтобы они сбылись по вашей карте?", url: "https://drive.google.com/file/d/1jozrexYyVzK6RjbqhNtzea4vYE1iUzEL/view?usp=sharing" },
     { title: "Календарь на январь и февраль 2026", url: "https://drive.google.com/file/d/1W4RYyrFIwJGn3xvTdu86u4Q2g0UZeJa2/view?usp=sharing" },
     { title: "Какую аскезу нужно взять, чтобы вырос доход?", url: "https://drive.google.com/file/d/1vuui7jr_KEmIIeHpwAa94x1Gp1buD2vO/view?usp=sharing" },
@@ -82,29 +86,16 @@ export default function AstrostatyiPage() {
       .replace(/\s+/g, "-")
   }
   const [badgeSlug, setBadgeSlug] = useState<string | null>(null)
-  const watchedStr = useSyncExternalStore(
+  const watched = useSyncExternalStore(
     astroSubscribeWatched,
-    () => {
-      try {
-        return localStorage.getItem(ASTRO_WATCHED_KEY) || "[]"
-      } catch {
-        return "[]"
-      }
-    },
-    () => "[]"
+    () => ASTRO_WATCHED_CACHE,
+    () => ASTRO_EMPTY_WATCHED
   )
-  const watched = useMemo(() => {
-    try {
-      const w = JSON.parse(watchedStr)
-      return Array.isArray(w) ? w.map((s: any) => String(s)) : ASTRO_EMPTY_WATCHED
-    } catch {
-      return ASTRO_EMPTY_WATCHED
-    }
-  }, [watchedStr])
   useEffect(() => {
     try {
       const initRaw = localStorage.getItem(ASTRO_WATCHED_KEY)
       const init = initRaw ? JSON.parse(initRaw) : []
+      ASTRO_WATCHED_CACHE = Array.isArray(init) ? init : ASTRO_EMPTY_WATCHED
       window.dispatchEvent(new Event(ASTRO_WATCHED_EVENT))
     } catch {}
   }, [])
@@ -115,7 +106,7 @@ export default function AstrostatyiPage() {
       const next = { ...prev }
       INITIAL_LINK_PAIRS.forEach(({ title, url }) => {
         const key = slugify(title)
-        next[key] = url
+        if (!next[key] || next[key] === LINK_URL) next[key] = url
       })
       const prevStr = JSON.stringify(prev)
       const nextStr = JSON.stringify(next)
@@ -132,12 +123,11 @@ export default function AstrostatyiPage() {
 
   function toggleWatched(slug: string) {
     try {
-      const prevRaw = localStorage.getItem(ASTRO_WATCHED_KEY) || "[]"
-      const prevArr = JSON.parse(prevRaw)
-      const prev = Array.isArray(prevArr) ? prevArr.map((s: any) => String(s)) : ASTRO_EMPTY_WATCHED
+      const prev = Array.isArray(ASTRO_WATCHED_CACHE) ? ASTRO_WATCHED_CACHE : ASTRO_EMPTY_WATCHED
       const next = prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug]
       try {
         localStorage.setItem(ASTRO_WATCHED_KEY, JSON.stringify(next))
+        ASTRO_WATCHED_CACHE = next
       } catch {}
       try {
         window.dispatchEvent(new Event(ASTRO_WATCHED_EVENT))
