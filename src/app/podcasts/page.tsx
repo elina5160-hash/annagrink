@@ -5,7 +5,6 @@ import Link from "next/link"
 import Image from "next/image"
 
 const topics = [
-  "Почему опасно объединять рода и бездумно делать детей",
   "Живые/мёртвые энергии в натальной карте",
   "Бесхребетные женщины",
   "Личные границы",
@@ -38,6 +37,7 @@ const topics = [
   "Как быть неидеальными?",
   "Делюсь своей болью",
   "Осложнения после установки виниров",
+  "Куда я пропала",
 ]
 
 function slugify(s: string) {
@@ -56,39 +56,39 @@ const EMPTY_WATCHED: string[] = []
 const POD_LINK_URL = "https://t.me/c/2474417642/542"
 
 const CUSTOM_URLS: Record<string, string> = {
-  "Почему опасно объединять рода и бездумно делать детей": "https://t.me/c/2474417642/120",
   "Живые/мёртвые энергии в натальной карте": "https://t.me/c/2474417642/120",
   "Бесхребетные женщины": "https://t.me/c/2474417642/134",
   "Личные границы": "https://t.me/c/2474417642/150",
   "Как перестать выбирать жестоких мужчин?": "https://t.me/c/2474417642/163",
-  "Уровни дохода": "https://t.me/c/2474417642/163",
-  "Подкаст с Косенко": "https://t.me/c/2474417642/178",
-  "Про богатых мужчин": "https://t.me/c/2474417642/223",
-  "Моя философия жизни": "https://t.me/c/2474417642/315",
-  "Как найти идеального мужчину?": "https://t.me/c/2474417642/328",
-  "Секреты больших денег": "https://t.me/c/2474417642/336",
-  "Релокация": "https://t.me/c/2474417642/342",
-  "Как не выбрасывать деньги на обучения?": "https://t.me/c/2474417642/354",
-  "Как уйти из найма?": "https://t.me/c/2474417642/355",
-  "Как общаться с мужем, чтобы вас слышали?": "https://t.me/c/2474417642/359",
-  "Беременность, дети": "https://t.me/c/2474417642/362",
-  "Как научиться работать за деньги": "https://t.me/c/2474417642/364",
-  "Как я научилась быть слабой": "https://t.me/c/2474417642/381",
-  "Как справиться с критикой?": "https://t.me/c/2474417642/393",
-  "Про обучение": "https://t.me/c/2474417642/417",
-  "Любовь или деньги?": "https://t.me/c/2474417642/434",
-  "Труп моего бизнеса": "https://t.me/c/2474417642/450",
-  "Как сливают продажи и клиентов?": "https://t.me/c/2474417642/456",
+  "Уровни дохода": "https://t.me/c/2474417642/178",
+  "Подкаст с Косенко": "https://t.me/c/2474417642/223",
+  "Про богатых мужчин": "https://t.me/c/2474417642/315",
+  "Моя философия жизни": "https://t.me/c/2474417642/328",
+  "Как найти идеального мужчину?": "https://t.me/c/2474417642/336",
+  "Секреты больших денег": "https://t.me/c/2474417642/342",
+  "Релокация": "https://t.me/c/2474417642/354",
+  "Как не выбрасывать деньги на обучения?": "https://t.me/c/2474417642/355",
+  "Как уйти из найма?": "https://t.me/c/2474417642/359",
+  "Как общаться с мужем, чтобы вас слышали?": "https://t.me/c/2474417642/362",
+  "Беременность, дети": "https://t.me/c/2474417642/364",
+  "Как научиться работать за деньги": "https://t.me/c/2474417642/381",
+  "Как я научилась быть слабой": "https://t.me/c/2474417642/393",
+  "Как справиться с критикой?": "https://t.me/c/2474417642/417",
+  "Про обучение": "https://t.me/c/2474417642/434",
+  "Любовь или деньги?": "https://t.me/c/2474417642/450",
+  "Труп моего бизнеса": "https://t.me/c/2474417642/456",
+  "Как сливают продажи и клиентов?": "https://t.me/c/2474417642/474",
   "Почему вы НЕ зарабатываете много": "https://t.me/c/2474417642/477",
-  "Как не разрушать жизнь на эмоциях": "https://t.me/c/2474417642/474",
-  "Почему я ушла от мужа": "https://t.me/c/2474417642/501",
-  "Про патриархальное общество": "https://t.me/c/2474417642/503",
-  "Легко ли тебе идти в новое?": "https://t.me/c/2474417642/509",
-  "Синдром отложенной жизни": "https://t.me/c/2474417642/531",
-  "Новое название и миссия клуба": "https://t.me/c/2474417642/543",
-  "Как быть неидеальными?": "https://t.me/c/2474417642/545",
-  "Делюсь своей болью": "https://t.me/c/2474417642/551",
-  "Осложнения после установки виниров": "https://t.me/c/2474417642/554",
+  "Как не разрушать жизнь на эмоциях": "https://t.me/c/2474417642/501",
+  "Почему я ушла от мужа": "https://t.me/c/2474417642/503",
+  "Про патриархальное общество": "https://t.me/c/2474417642/509",
+  "Легко ли тебе идти в новое?": "https://t.me/c/2474417642/531",
+  "Синдром отложенной жизни": "https://t.me/c/2474417642/543",
+  "Новое название и миссия клуба": "https://t.me/c/2474417642/545",
+  "Как быть неидеальными?": "https://t.me/c/2474417642/551",
+  "Делюсь своей болью": "https://t.me/c/2474417642/554",
+  "Осложнения после установки виниров": "https://t.me/c/2474417642/573",
+  "Куда я пропала": "https://t.me/c/2474417642/588",
 }
 
 const INITIAL_PODCAST_ITEMS: Item[] = topics.map((t) => ({ title: t, url: CUSTOM_URLS[t] || POD_LINK_URL }))
@@ -420,47 +420,37 @@ export default function PodcastsPage() {
                       const slug = slugify(t)
                       try {
                         if (!watched.includes(slug)) {
-                          const prev = Array.isArray(WATCHED_CACHE) ? WATCHED_CACHE : []
-                          const next = [...prev, slug]
-                          localStorage.setItem(WATCHED_KEY, JSON.stringify(next))
-                          WATCHED_CACHE = next
-                          window.dispatchEvent(new Event(WATCHED_EVENT))
+                          toggleWatched(slug)
+                        } else {
+                          toggleWatched(slug)
                         }
-                        setBadgeSlug(slug)
-                        setTimeout(() => {
-                          setBadgeSlug((s) => (s === slug ? null : s))
-                        }, 1200)
                       } catch {}
                     }}
                   >
                     <path
-                      d="M10.875 1.875L4.125 8.625L1.125 5.625"
-                      stroke={watched.includes(slugify(t)) ? "#22926B" : "#D9D9D9"}
+                      d="M1 4.5L4.5 8L11 1"
+                      stroke={watched.includes(slugify(t)) ? "#F4D990" : "rgba(255, 255, 255, 0.5)"}
                       strokeWidth="2"
                       strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="11" fill="#D9D9D9" />
-                    <circle cx="12" cy="12" r="11" fill="url(#paint0_linear_play)" />
-                    <svg x="8.5" y="7.5" width="7" height="9" viewBox="0 0 7 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7.00964 4.047L0 8.09402V0L7.00964 4.047Z" fill="#0d1819" />
+                        strokeLinejoin="round"
+                      />
                     </svg>
-                    <defs>
-                      <linearGradient id="paint0_linear_play" x1="0" y1="12" x2="24" y2="12" gradientUnits="userSpaceOnUse">
-                        <stop stopColor="#F4D990" />
-                        <stop offset="1" stopColor="#CB9B3D" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="12" fill="url(#paint_play_linear)" />
+                      <path d="M15.5 12L9.5 15.4641L9.5 8.5359L15.5 12Z" fill="#08102D" />
+                      <defs>
+                        <linearGradient id="paint_play_linear" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#F4D990" />
+                          <stop offset="1" stopColor="#CB9B3D" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
               </a>
             </li>
           ))}
         </ul>
       </div>
-      <div style={{ height: "80px" }} />
       <BottomBar />
     </div>
   )
