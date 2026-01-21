@@ -1190,7 +1190,9 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
           )}
         </motion.div>
         <div className="relative max-w-[358px] mx-auto" style={{ marginTop: "13px" }}>
-          <img src="/плашкадл.png" alt="" style={{ width: "100%", height: "auto", display: "block" }} />
+          <a href="https://t.me/anna_grinkovaa" target="_blank" rel="noopener noreferrer" style={{ display: "block" }}>
+            <img src="/плашкадл.png" alt="" style={{ width: "100%", height: "auto", display: "block" }} />
+          </a>
         </div>
         {isHome && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "13px" }}>
