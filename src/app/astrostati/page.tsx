@@ -19,17 +19,21 @@ function astroSubscribeWatched(cb: () => void) {
 export default function AstrostatyiPage() {
   const defaultTopics = [
     "От кого зависит ваш социальный статус и успех?",
-    "Голубая кровь в роду",
+    "ГОЛУБАЯ КРОВЬ В РОДУ",
     "Семья или карьера",
-    "Родовые сценарии в личной жизни",
+    "От кого в роду зависят ваши отношения и какие родовые сценарии у вас есть в личной жизни?",
     "Идеальный мужчина или абъюзер?",
-    "Что будет, если не выполнять предназначение",
-    "Фундамент вашей жизни",
-    "Сфера твоего везения",
+    "Что будет, если не выполнять своё предназначение?",
+    "Фундамент вашей жизни: какая сфера будет вашей опорой",
+    "Сфера твоего везения в натальной карте",
     "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?",
-    "Почему вы годами не можете встретить партнёра",
+    "Почему вы годами не можете встретить партнёра: указания в карте",
     "Указания в натальной карте на богатого партнёра",
-    "Плутон: долги или богатство",
+    "Плутон: долги или богатство. Как научиться управлять этой планетой для роста в деньгах?",
+    "денежный маникюр на весь предстоящий год",
+    "Какие желания загадывать в новогоднюю ночь, чтобы они сбылись по вашей карте?",
+    "Календарь на январь и февраль 2026",
+    "Какую аскезу нужно взять, чтобы вырос доход?",
   ]
   const [topics, setTopics] = useState<string[]>(() => {
     try {
@@ -54,18 +58,22 @@ export default function AstrostatyiPage() {
   }, [])
   const LINK_URL = "https://t.me/c/2474417642/542"
   const INITIAL_LINK_PAIRS: Array<{ title: string; url: string }> = [
-    { title: "От кого зависит ваш социальный статус и успех?", url: "https://drive.google.com/file/d/1X6x_O0Z7vK_uG-D2d5u8tyoJb_q2y3rF/view?usp=sharing" },
-    { title: "Голубая кровь в роду", url: "https://drive.google.com/file/d/1trj-q3FFOA_3lelo36goxB379snv4R0e/view?usp=sharing" },
+    { title: "От кого зависит ваш социальный статус и успех?", url: "https://drive.google.com/file/d/1A9Q4Db9Z856NI3wYyQX8DmGGEE442RSs/view?usp=sharing" },
+    { title: "ГОЛУБАЯ КРОВЬ В РОДУ", url: "https://drive.google.com/file/d/1trj-q3FFOA_3lelo36goxB379snv4R0e/view?usp=sharing" },
     { title: "Семья или карьера", url: "https://drive.google.com/file/d/1PElEdzwkpg3PRcCNt1HJw42uvbXPZ3VQ/view?usp=sharing" },
-    { title: "Родовые сценарии в личной жизни", url: "https://disk.yandex.ru/d/VsYSRdgYkN5f7g" },
+    { title: "От кого в роду зависят ваши отношения и какие родовые сценарии у вас есть в личной жизни?", url: "https://disk.yandex.ru/d/VsYSRdgYkN5f7g" },
     { title: "Идеальный мужчина или абъюзер?", url: "https://disk.yandex.ru/d/hU430VCKbqTdvw" },
-    { title: "Что будет, если не выполнять предназначение", url: "https://drive.google.com/file/d/1i_yXj_s_w_k_2_0_2_4/view?usp=sharing" },
-    { title: "Фундамент вашей жизни", url: "https://drive.google.com/file/d/13C9CESsoCs4OMgNoUu2J9L37-KHPZPlK/view?usp=sharing" },
-    { title: "Сфера твоего везения", url: "https://drive.google.com/file/d/1-GvJf_DlQa0OTfWIomNdDtPzIr4ngRdC/view?usp=sharing" },
-    { title: "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?", url: "https://drive.google.com/file/d/1E7m1kcO_-c32iOmFoy8CLPrw56vUwbC4/view?usp=sharing" },
-    { title: "Почему вы годами не можете встретить партнёра", url: "https://drive.google.com/file/d/1n7jHWfZ-uEAO04Bms73ObjssH69F2Eip/view?usp=sharing" },
-    { title: "Указания в натальной карте на богатого партнёра", url: "https://drive.google.com/file/d/1A9Q4Db9Z856NI3wYyQX8DmGGEE442RSs/view?usp=sharing" },
-    { title: "Плутон: долги или богатство", url: "https://drive.google.com/file/d/1zdhqtUKNMt8D3Lu6XD65bzZVCvtOy5V1/view?usp=sharing" },
+    { title: "Что будет, если не выполнять своё предназначение?", url: "https://drive.google.com/file/d/1zdhqtUKNMt8D3Lu6XD65bzZVCvtOy5V1/view?usp=sharing" },
+    { title: "Фундамент вашей жизни: какая сфера будет вашей опорой", url: "https://drive.google.com/file/d/13C9CESsoCs4OMgNoUu2J9L37-KHPZPlK/view?usp=sharing" },
+    { title: "Сфера твоего везения в натальной карте", url: "https://drive.google.com/file/d/1CfzB4eUW8WErWAGY9CyMdh3KEIa9wG2_/view?usp=sharing" },
+    { title: "Кому необходимо переехать из своего города, а кому остаться, чтобы много зарабатывать?", url: "https://drive.google.com/file/d/15feq4xbPbKHuLmi1zBILfAmY5RxuZneK/view?usp=sharing" },
+    { title: "Почему вы годами не можете встретить партнёра: указания в карте", url: "https://drive.google.com/file/d/1n7jHWfZ-uEAO04Bms73ObjssH69F2Eip/view?usp=sharing" },
+    { title: "Указания в натальной карте на богатого партнёра", url: "https://drive.google.com/file/d/1E7m1kcO_-c32iOmFoy8CLPrw56vUwbC4/view?usp=sharing" },
+    { title: "Плутон: долги или богатство. Как научиться управлять этой планетой для роста в деньгах?", url: "https://drive.google.com/file/d/1-GvJf_DlQa0OTfWIomNdDtPzIr4ngRdC/view?usp=sharing" },
+    { title: "денежный маникюр на весь предстоящий год", url: "https://disk.yandex.ru/i/O5sIdmptkZoeeg" },
+    { title: "Какие желания загадывать в новогоднюю ночь, чтобы они сбылись по вашей карте?", url: "https://drive.google.com/file/d/1jozrexYyVzK6RjbqhNtzea4vYE1iUzEL/view?usp=sharing" },
+    { title: "Календарь на январь и февраль 2026", url: "https://drive.google.com/file/d/1W4RYyrFIwJGn3xvTdu86u4Q2g0UZeJa2/view?usp=sharing" },
+    { title: "Какую аскезу нужно взять, чтобы вырос доход?", url: "https://drive.google.com/file/d/1vuui7jr_KEmIIeHpwAa94x1Gp1buD2vO/view?usp=sharing" },
   ]
   function slugify(s: string) {
     return s
