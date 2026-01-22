@@ -25,7 +25,7 @@ function astroSubscribeWatched(cb: () => void) {
 export default function AstrostatyiPage() {
   const defaultTopics = [
     "От кого зависит ваш социальный статус и успех?",
-    "ГОЛУБАЯ КРОВЬ В РОДУ",
+    "Голубая кровь в роду",
     "Семья или карьера",
     "От кого в роду зависят ваши отношения и какие родовые сценарии у вас есть в личной жизни?",
     "Идеальный мужчина или абъюзер?",
@@ -63,7 +63,7 @@ export default function AstrostatyiPage() {
   const LINK_URL = "https://t.me/c/2474417642/542"
   const INITIAL_LINK_PAIRS: Array<{ title: string; url: string }> = [
     { title: "От кого зависит ваш социальный статус и успех?", url: "https://drive.google.com/file/d/1A9Q4Db9Z856NI3wYyQX8DmGGEE442RSs/view?usp=sharing" },
-    { title: "ГОЛУБАЯ КРОВЬ В РОДУ", url: "https://drive.google.com/file/d/1trj-q3FFOA_3lelo36goxB379snv4R0e/view?usp=sharing" },
+    { title: "Голубая кровь в роду", url: "https://drive.google.com/file/d/1trj-q3FFOA_3lelo36goxB379snv4R0e/view?usp=sharing" },
     { title: "Семья или карьера", url: "https://drive.google.com/file/d/1PElEdzwkpg3PRcCNt1HJw42uvbXPZ3VQ/view?usp=sharing" },
     { title: "От кого в роду зависят ваши отношения и какие родовые сценарии у вас есть в личной жизни?", url: "https://disk.yandex.ru/d/VsYSRdgYkN5f7g" },
     { title: "Идеальный мужчина или абъюзер?", url: "https://disk.yandex.ru/d/hU430VCKbqTdvw" },
@@ -213,7 +213,6 @@ export default function AstrostatyiPage() {
                 fontWeight: 400,
                 fontSize: "20px",
                 lineHeight: "95%",
-                textTransform: "uppercase",
                 background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
@@ -233,7 +232,7 @@ export default function AstrostatyiPage() {
               textAlign: "left",
             }}
           >
-            Доступная астропсихология для каждого из вас. Каждый месяц Анна и ее команда пишут для вас новые статьи, по котором вы можете открыть натальную карту и разобрать важные точки своего навигатора. Если у вас есть вопросы и\xa0вы не можете разобраться в своей карте, то обязательно пишите в чате – куратору Марии Першиной.
+            Доступная астропсихология для каждого из вас. Каждый месяц Анна и ее команда пишут для вас новые статьи, по которым вы можете открыть натальную карту и разобрать важные точки своего навигатора. Если у вас есть вопросы и вы не можете разобраться в своей карте, то обязательно пишите в чате – куратору Марии Першиной.
           </div>
         </div>
         <div className="w-full max-w-[343px]" style={{ marginTop: "12px" }}>
@@ -311,7 +310,7 @@ export default function AstrostatyiPage() {
                           <path d="M1.5 4.5 L4.5 7.5 L10.5 1.5" stroke="#D9D9D9" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </div>
-                      <span style={{ marginLeft: 4 }}>Прослушано</span>
+                      <span style={{ marginLeft: 4 }}>Прочитано</span>
                     </div>
                     <div className="flex items-center gap-3" style={{ position: "relative" }}>
                       <svg
