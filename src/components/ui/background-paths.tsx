@@ -639,10 +639,8 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                   <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
                 </div>
               </Link>
-              <a
-                href="https://t.me/c/2474417642/542"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/schedule"
                 className="absolute z-20"
                 style={{
                   left: 0,
@@ -707,7 +705,7 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                     opacity: 0.7,
                   }}
                 />
-              </a>
+              </Link>
               <Link
                 href="/club"
                 className="absolute z-20"
