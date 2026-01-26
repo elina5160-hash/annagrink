@@ -8,6 +8,9 @@ export function VideoBackground() {
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.75
+      videoRef.current.play().catch((e) => {
+        console.error("Autoplay failed:", e)
+      })
     }
   }, [])
 
@@ -19,9 +22,11 @@ export function VideoBackground() {
         loop
         muted
         playsInline
+        disablePictureInPicture
+        disableRemotePlayback
         className="w-full h-full object-cover opacity-80 transition-opacity duration-1000 ease-in-out"
       >
-        <source src="/движ.mp4" type="video/mp4" />
+        <source src="/space-background.mp4" type="video/mp4" />
       </video>
       {/* Dark overlay for better text readability and smoothing */}
       <div className="absolute inset-0 bg-black/30" />
