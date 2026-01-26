@@ -347,20 +347,20 @@ export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string
                 </div>
                 {openAudience && (
                   <div style={{ marginTop: "5px" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                       <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                         Для новичков, которые только начинают погружение в астропсихологию
                       </div>
                     </div>
-                    <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
-                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                    <div style={{ marginTop: "6px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                       <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                         Для профессиональных астропсихологов, которые хотят находиться в поддерживающем пространстве и находить клиентов
                       </div>
                     </div>
-                    <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
-                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                    <div style={{ marginTop: "6px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                       <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                         Для тех, кто хочет расти и становиться лучше день за днём, находить путь к самому себе
                       </div>

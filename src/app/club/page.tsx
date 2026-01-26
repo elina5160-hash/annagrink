@@ -106,20 +106,20 @@ export default function ClubPage() {
               </div>
               {openAudience && (
                 <div style={{ marginTop: "5px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                    <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                     <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                       для тех, кто хочет найти свое предназначение в жизни
                     </div>
                   </div>
-                  <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
-                    <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                  <div style={{ marginTop: "6px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                    <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                     <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                       для людей, которые хотят понять, как богатеть без усилий, вернуть себе поток и начать принимать масштабные решения в жизни
                     </div>
                   </div>
-                  <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
-                    <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                  <div style={{ marginTop: "6px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                    <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                     <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                       для тех, кто хочет выйти из разрушительных родовых сценариев, не отрицая род, а занимая свое корректное место
                     </div>
@@ -167,26 +167,26 @@ export default function ClubPage() {
               </div>
               {openInside && (
                         <div style={{ marginTop: "5px" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                          <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                            <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                             <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                               Ежемесячные индивидуальные разборы от астропсихологов Института
                             </div>
                           </div>
-                          <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                          <div style={{ marginTop: "6px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                            <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                             <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                               Ежемесячный урок с Анной Гриньковой по теме месяца
                             </div>
                           </div>
-                          <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                          <div style={{ marginTop: "6px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                            <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                             <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                               Психологические подкасты и разборы жизненных ситуаций
                             </div>
                           </div>
-                          <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
-                            <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                          <div style={{ marginTop: "6px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                            <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0, marginTop: "3.5px" }} />
                             <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
                               Живое сообщество, в котором ты можешь поделиться, чем угодно и найти соратников и поддержку
                             </div>
